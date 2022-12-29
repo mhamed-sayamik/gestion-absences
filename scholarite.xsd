@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+    <xs:element name="Scholarite">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="enseignant" type="ensType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="etudiant" type="etudiantType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="module" type="moduleType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="matiere" type="matiereType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="note" type="noteType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cin" type="xs:string"></xs:element>
+    <xs:element name="sexe">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="Masculin|Feminin"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="nom" type="xs:string"></xs:element>
+    <xs:element name="prenom" type="xs:string"></xs:element>
+    <xs:element name="tele" >
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="fix"/>
+                                <xs:enumeration value="portable"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="email">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="type" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="personnel" />
+                                <xs:enumeration value="academique" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+            
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="ensType" mixed="true">
+        <xs:sequence>
+            <xs:element ref="cin"></xs:element>
+            <xs:element ref="sexe"></xs:element>
+            <xs:element ref="nom"></xs:element>
+            <xs:element ref="prenom"></xs:element>
+            <xs:element ref="tele" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            <xs:element ref="email" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            <xs:element name="specialite" type="xs:string"></xs:element>
+            <xs:element name="departement">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="GI|TM|TIMQ|GIM"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="numSomme" type="xs:ID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="etudiantType" mixed="true">
+        <xs:sequence>
+            <xs:element ref="cin"></xs:element>
+            <xs:element ref="sexe"></xs:element>
+            <xs:element ref="nom"></xs:element>
+            <xs:element ref="prenom"></xs:element>
+            <xs:element ref="tele" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            <xs:element ref="email" minOccurs="1" maxOccurs="unbounded"></xs:element>
+            <xs:element name="dateNaissance" type="xs:date"></xs:element>
+            <xs:element name="adresse" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="rue" type="xs:string"></xs:element>
+                        <xs:element name="numero" type="xs:integer"></xs:element>
+                        <xs:element name="ville" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="numInsc" type="xs:ID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="moduleType">
+        <xs:sequence>
+            <xs:element ref="nom"></xs:element>
+            <xs:element name="coordonnateur" type="xs:IDREF"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="codeModule" type="xs:ID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="matiereType">
+        <xs:sequence>
+            <xs:element name="intitule" type="xs:string"></xs:element>
+            <xs:element name="coefficient" type="xs:float"></xs:element>
+            <xs:element name="enseignant" type="xs:IDREF"></xs:element>
+            <xs:element name="module" type="xs:IDREF"></xs:element>
+        </xs:sequence>
+        <xs:attribute name="codeMatiere" type="xs:ID" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="noteType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="DS" />
+                            <xs:enumeration value="EF" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="etudiant" type="xs:IDREF" use="required"/>
+                <xs:attribute name="matiere" type="xs:IDREF" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

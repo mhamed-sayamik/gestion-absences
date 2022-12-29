@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ESTS>
+  <Roles>
+    <role id="1">Administrator</role>
+    <role id="2">Student</role>
+    <role id="3">Teacher</role>
+  </Roles>
+  <Users>
+    <user>
+      <login>teacher1</login>
+      <password>password789</password>
+      <Nom>Bob</Nom>
+      <Prenom>Smith</Prenom>
+      <id_Roles>3</id_Roles>
+    </user>
+    <user>
+      <login>teacher2</login>
+      <password>password789</password>
+      <Nom>jalil</Nom>
+      <Prenom>Smith</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+  </Users>
+  <Permissions>
+    <permission id="1">Create Users</permission>
+    <permission id="2">Edit Users</permission>
+    <permission id="3">Delete Users</permission>
+  </Permissions>
+  <Groupes>
+    <groupe id="1">
+      <numero>1</numero>
+      <id_Filieres>1</id_Filieres>
+    </groupe>
+    <groupe id="2">
+    <numero>2</numero>
+      <id_Filieres>2</id_Filieres>
+    </groupe>
+  </Groupes>
+  <Departements>
+    <departement id="1">Computer Science</departement>
+    <departement id="2">Mathematics</departement>
+  </Departements>
+  <Filieres>
+    <filiere id="1" nom_fil="Computer Science">
+      <id_Departements>1</id_Departements>
+    </filiere>
+    <filiere id="2" nom_fil="Mathematics">
+      <id_Departements>2</id_Departements>
+    </filiere>
+  </Filieres>
+  <Niveaux>
+    <niveau id="1">Undergraduate</niveau>
+    <niveau id="2">Graduate</niveau>
+  </Niveaux>
+  <Etudiants>
+    <etudiant id="1">
+      <nom>Alice</nom>
+      <id_Groupes>1</id_Groupes>
+    </etudiant>
+    <etudiant id="2">
+      <nom>Bob</nom>
+      <id_Groupes>1</id_Groupes>
+    </etudiant>
+    <etudiant id="3">
+    <nom>Charlie</nom>
+      <id_Groupes>2</id_Groupes>
+    </etudiant>
+  </Etudiants>
+  <Seances>
+    <seance id="1" id_Matieres="1">
+      <id_Emploidutemps>1</id_Emploidutemps>
+      <duree>60</duree>
+    </seance>
+    
+    
+  </Seances>
+  <Matieres>
+    <matiere id="1" id_module="1" id_User="1">
+      <nom>Computer Science 101</nom>
+    </matiere>
+    <matiere id="2" id_module="1" id_User="2">
+    <nom>accoiud</nom>
+    </matiere>
+     <matiere id="3" id_module="1" id_User="2">
+    <nom>spsp</nom>
+    </matiere>
+  </Matieres>
+  <Semestres>
+    <semestre id="1">
+    </semestre>
+    <semestre id="2">
+    </semestre>
+  </Semestres>
+  <Emploidutemps>
+    <emploidutemps id="1">
+      <id_Semestres>1</id_Semestres>
+    </emploidutemps>
+    <emploidutemps id="2">
+      <id_Semestres>2</id_Semestres>
+    </emploidutemps>
+  </Emploidutemps>
+  <Modules>
+    <module id="1">Introduction to Computer Science</module>
+    <module id="2">Introduction to Calculus</module>
+  </Modules>
+  <roles_permissions>
+    <role_permission id_Permissions="1" id_Roles="1"/>
+    <role_permission id_Permissions="2" id_Roles="1"/>
+    <role_permission id_Permissions="3" id_Roles="1"/>
+    <role_permission id_Permissions="1" id_Roles="3"/>
+  </roles_permissions>
+  <filieres_niveaux>
+    <filiere_niveau id_Filieres="1" id_Niveaux="1"/>
+    <filiere_niveau id_Filieres="2" id_Niveaux="2"/>
+  </filieres_niveaux>
+  <access>
+    <user_matiere login_user="student1" id_Matieres="1"/>
+    <user_matiere login_user="student1" id_Matieres="3"/>
+    <user_matiere login_user="teacher1" id_Matieres="1"/>
+  </access>
+  <emplois_filieres>
+  <emploi_filiere id_filiere=""/>
+  </emplois_filieres>
+  <abscences>
+    <abscence id_Etudiants="1" id_Seances="1"/>
+    <abscence id_Etudiants="2" id_Seances="2"/>
+  </abscences>
+</ESTS>
