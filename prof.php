@@ -1,22 +1,46 @@
+
 <?php
 //load xml database
 $path = 'ESTS.xml';
 $doc = new DOMDocument();
 $doc->load($path);
 $matieresId = getUserMatieres("student1");
-$seancesId = array();
+$semaine = 1;
+$semestre = 1;
+if(isset($_GET['semestre'])) $semestre = $_GET['semestre'];
+if(isset($_GET['semaine'])) $semaine = $_GET['semaine'];
+if(isset($_GET['seance'])) $seance = $_GET['seance'];
+$seances = array();
+echo $semestre,$semaine;
 foreach($matieresId as $matiereId){
-	$seancesId = array_merge($seancesId, getSeances($matiereId));
+	global $semaine,$semestre;
+	$seances = array_merge($seances, getSeances($matiereId, $semestre, $semaine));
 }
-print_r($seancesId);
-print_r($matieresId);
+if(isset($_POST['enregistreAbs'])){
+	global $seance;
+	foreach($_POST['absenceList'] as $absent)
+	AddAbsence($absent, $seance);
+}if(isset($_POST['modifyAbs'])){
+	global $seance;
+	deleteAbsences($seance);
+	if(isset($_POST['modifyAbsenceList'])){
+		foreach($_POST['modifyAbsenceList'] as $absent){
+		AddAbsence($absent, $seance);
+		}
+	}
+	
+}
+//echo $seances[0]->getElementsByTagName("duree")[0]->nodeValue;
 
 
-function getAllSeances(){
+
+
+
+/*function getAllSeances(){
 	global $doc;	
 	$allSeances = $doc->getElementsByTagName("Seances")[0]->getElementsByTagName("seance");
 	return $allSeances;
-}
+}*/
 function getSeance($idSeance){
 	global $doc;	
 	$allSeances = $doc->getElementsByTagName("Seances")[0]->getElementsByTagName("seance");
@@ -50,13 +74,12 @@ function AddSeance($idSeance, $idMatiere){
 	$seances->appendChild($seance);
 	$doc->save($path);
 }*/
-//returns array of int id
-function getSeances($idMatiere){
+function getSeances($idMatiere, $semestre, $semaine){
 	global $doc;	
 	$_seances = array();
 	$allSeances = $doc->getElementsByTagName("Seances")[0]->getElementsByTagName("seance");
 	foreach($allSeances as $seance){
-		if($seance->getAttribute("id_Matieres") == $idMatiere) $_seances[] = $seance->getAttribute("id");
+		if($seance->getAttribute("id_Matieres") == $idMatiere && $seance->getAttribute("semestre") == $semestre && $seance->getAttribute("semaine") == $semaine) $_seances[] = $seance;
 	}
 	return $_seances;
 }
@@ -70,24 +93,105 @@ function getUserMatieres($loginUser){
 	}
 	return $_matiers;
 }
-function getAbsences($seances){
+function getAbsences($seance){
 	global $doc;
 	$_students =array();
-	$absences =$doc->getElementsByTagName("abscences")[0]->getfoElementsByTagName("abscence");
+	$absences =$doc->getElementsByTagName("abscences")[0]->getElementsByTagName("abscence");
 	//foreach seance check foreach absence if its the same seance then add it to array
-	foreach($seances as $seance){
 		foreach($absences as $absence){
-		if($absences->getAttribute("id_Seances") === $seance)  $_students[] = $absences->getAttribute("id_Etudiants");
+		if($absence->getAttribute("id_Seances") === $seance){
+			$etudiantId = $absence->getAttribute("id_Etudiants");
+			$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+			foreach($etudiants as $etudiant){
+				if($etudiant->getAttribute("id") == $etudiantId) $_students[] = $etudiant;
+			}
+			}  
 		}
-	}
 	return $_students;
 }
+function getAbsence($idEtudiant, $idSeance){
+	global $doc;
+	$absences = $doc->getElementsByTagName("abscences")[0]->getElementsByTagName("abscence");
+	foreach($absences as $absence){
+		if($absence->getAttribute("id_Etudiants") == $idEtudiant && $absence->getAttribute("id_Seances") == $idSeance) return $absence;
+	}
+	return null;
+}
 
-
+function AddAbsence($idEtudiant, $idSeance){
+	global $doc;
+	global $path;
+	if($absence = getAbsence($idEtudiant, $idSeance)) return;
+	$absences = $doc->getElementsByTagName("abscences")[0];
+	$absence = $doc->createElement('abscence');
+	$absence->setAttribute('id_Etudiants', $idEtudiant);
+	$absence->setAttribute('id_Seances', $idSeance);
+	$absences->appendChild($absence);
+	$doc->save($path);
+}
+function getMatiere($matiereId){
+	global $doc;
+	$matieres =$doc->getElementsByTagName("Matieres")[0]->getElementsByTagName("matiere");
+	foreach($matieres as $matiere){
+		if($matiere->getAttribute("id") == $matiereId) return $matiere;
+	}
+	return null;
+}
+function getGroupFiliere($groupeId){
+	global $doc;
+	$groupes =$doc->getElementsByTagName("Groupes")[0]->getElementsByTagName("groupe");
+	foreach($groupes as $groupe){
+		if($groupe->getAttribute("id") == $groupeId) return $groupe->getAttribute("id_Filieres");
+	}
+	}
+function getFiliere($filiereId){
+		global $doc;
+		$filieres =$doc->getElementsByTagName("Filieres")[0]->getElementsByTagName("filiere");
+		foreach($filieres as $filiere){
+			if($filiere->getAttribute("id") == $filiereId) return $filiere;
+		}
+		return null;
+}
+function deleteAbsences($idSeance) {
+	global $doc;
+	global $path;
+  
+	// Create a list of absences to keep
+	$absencesToKeep = array();
+	$absences = $doc->getElementsByTagName("abscences")[0]->getElementsByTagName("abscence");
+	foreach($absences as $absence) {
+	  if($absence->getAttribute("id_Seances") !== $idSeance) {
+		$absencesToKeep[] = $absence;
+	  }
+	}
+  
+	// Remove all absences from the document
+	$absencesNode = $doc->getElementsByTagName("abscences")[0];
+	while($absencesNode->hasChildNodes()) {
+	  $absencesNode->removeChild($absencesNode->firstChild);
+	}
+  
+	// Add the absences that we want to keep back to the document
+	foreach($absencesToKeep as $absence) {
+	  $absencesNode->appendChild($absence);
+	}
+  
+	$doc->save($path);
+  }
 ?>
-
-
 <!DOCTYPE html>
+<script>
+	function displaySeance(seanceId, numero, jour,semaine,semester, seanceNom){
+			seanceCellId ="seance-"+numero+"-"+jour+"-"+semaine+"-"+semester;
+			seanceCell = document.getElementById(seanceCellId);
+			console.log(seanceCellId);
+			button = seanceCell.getElementsByTagName("button")[0];
+			button.innerText = seanceNom;
+			button.style.display = "inline"; 
+			button.setAttribute("onclick",'location.href="?semestre='+semester+'&semaine='+semaine+'&seance='+seanceId+'"');
+			
+		}
+</script>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -113,34 +217,35 @@ function getAbsences($seances){
 			
 
 			<div class="container">
-				<form>
+				<form >
 					<div class="form-group">
 						<label for="selectSemaine">Select semaine:</label>
-						<select class="form-control" id="selectSemaine">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>10</option>
-							<option>11</option>
-							<option>12</option>
+						<select style="margin-bottom:1em;" class="form-control" name="semaine" id="selectSemaine">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
 						</select>
+						<div class="form-check">
+						<input class="form-check-input" type="radio" name="semestre" id="flexRadioDefault1" value="1">
+						<label class="form-check-label" for="flexRadioDefault1">Semestre 1</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-						<label class="form-check-label" for="flexRadioDefault1">Semestre1</label>
-					</div>
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-						<label class="form-check-label" for="flexRadioDefault2">Semestre2</label>
+						<input class="form-check-input" type="radio" name="semestre" id="flexRadioDefault2" value="2">
+						<label class="form-check-label" for="flexRadioDefault2">Semestre 2</label>
+					</div><br>
+					<input type="submit" class="btn btn-info" value="Afficher">
 					</div>
 				</form>
-				<table class="emploi table table-hover table-bordered caption-top table-responsive-md">
+				<table id="emploi" class="emploi table table-hover table-bordered caption-top table-responsive-md">
 					<caption>
 						Emploi du temps
 					</caption>
@@ -154,179 +259,162 @@ function getAbsences($seances){
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="table-secondary">Lundi</td>
-							<td>
-								<button type="button" class="btn btn-primary">Dev personnel</button> <br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Dev personnel</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Dev personnel</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary"></button><br />
-								<span class="duree">1 heure</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-secondary">Mardi</td>
-							<td>
-								<button type="button" class="btn btn-primary">Dev personnel</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Dev personnel</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Dev personnel</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary"></button><br />
-								<span class="duree">1 heure</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-secondary">Mercredi</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1 heure</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-secondary">Jeudi</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-secondary">Vendredi</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-secondary">Samedi</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-primary">Doe</button><br />
-								<span class="duree">1h</span>
-							</td>
-						</tr>
+					<?php 
+					echo "<tr>";
+					for($jour=1;$jour<=6;$jour++){
+						$leJour = array("Demanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+						echo "<td class='table-secondary'>".$leJour[$jour]."</td>";
+						for($numero=1;$numero<=4;$numero++){
+						global $semaine,$semestre;
+						echo "<td id='seance-".$numero."-".$jour."-".$semaine."-".$semestre."'>
+						<button  type='button' style='display:none' class='btn btn-primary'>libre</button>
+					</td>";
+						}
+						echo "<tr>";
+					}
+
+					foreach($seances as $seance){
+					global $semaine,$semestre;
+					$seanceId = $seance->getAttribute("id");
+					$seanceNum = $seance->getAttribute("numero");
+					$seanceJ = $seance->getAttribute("jour");
+					$seanceMatiere = getMatiere($seance->getAttribute("id_Matieres"));
+					$seanceMatiereNom = $seanceMatiere->getElementsByTagname("nom")[0]->nodeValue;
+					echo "<script>displaySeance(".$seanceId.", ".$seanceNum.", ".$seanceJ.",".$semaine.",".$semestre.", "."'$seanceMatiereNom'".")</script>";
+					}
+							?>
+						
 					</tbody>
-				</table>
-				<table class="none listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+				</table><br><br>
+			</div>
+		</div>
+	
+	<form class="absenceEntry" method="POST">
+	<table id="listAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
 					<caption>
-						Liste des étudiants
+						Enregistrer les absence
 					</caption>
 					<thead class="thead-dark">
 						<tr>
 							<th>Nom</th>
-							<th>Prenom</th>
 							<th>Absence</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php 
-							
-							foreach ($xml_data->etudiant as $data)
+						if(isset($_GET['seance'])){
+							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
+							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+							$__students = array();
+							foreach($etudiants as $etudiant){
+							if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
+							}
+							foreach ($__students as $etd)
 							{
 								echo "
 								<tr>
-									<td>". $data->nom . "</td> ";
-								echo "<td>". $data->prenom . "</td> ";
+									<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
 								echo "
 									<td>
-										<input type='checkbox' class='form-check-input' id='exampleCheck1' />
+										<input type='checkbox' class='form-check-input' name='absenceList[]'  value='". $etd->getAttribute("id")."'/>
 										<label class='form-check-label' for='exampleCheck1'>Absent</label>
 									</td>
 								</tr>";
 								//display each sub element in xml file	
 							}
+						}
 						?>
-						<tr>
-							<td>John</td>
-							<td>Doe</td>
-							<td>
-								<input type="checkbox" class="form-check-input" id="exampleCheck1" />
-								<label class="form-check-label" for="exampleCheck1">Absent</label>
-							</td>
-						</tr>
-						<tr>
-							<td>Mary</td>
-							<td>Moe</td>
-							<td>
-								<input type="checkbox" class="form-check-input" id="exampleCheck2" />
-								<label class="form-check-label" for="exampleCheck2">Absent</label>
-							</td>
-						</tr>
-						<tr>
-							<td>July</td>
-							<td>Dooley</td>
-							<td>
-								<input type="checkbox" class="form-check-input" id="exampleCheck3" />
-								<label class="form-check-label" for="exampleCheck3">Absent</label>
-							</td>
-						</tr>
+						<br><br>
 					</tbody>
 				</table>
-			</div>
-		</div>
+			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="enregistreAbs" value="Enregistrer">
+	</form>
+	<table id="listeAbs" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption>
+						Liste des absence
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Nom</th>
+							<th>filiere</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						if(isset($_GET['seance'])){
+							global $absences;
+							$absences = getAbsences("".$_GET['seance']."");
+							foreach ($absences as $absent)
+							{
+								echo "
+								<tr>
+									<td>". $absent->getElementsByTagName("nom")[0]->nodeValue . "</td> 
+									<td>". getFiliere(getGroupFiliere($absent->getAttribute("id_Groupes")))->getElementsByTagName("nom")[0]->nodeValue. "</td></tr> ";
+								//display each sub element in xml file	
+							}
+						}
+						?>
+						<br><br>
+					</tbody>
+				</table>
+		
+	
+	</form>
+	<form class="absenceModify" method="POST">
+	<table id="modifyAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption>
+						Modifier les absence
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Nom</th>
+							<th>Absence</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						if(isset($_GET['seance'])){
+							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
+							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+							$__students = array();
+							foreach($etudiants as $etudiant){
+							if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
+							}
+							foreach ($__students as $etd)
+							{	
+								echo "
+								<tr>
+									<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
+									global $absences;
+									$is_absent=false;
+									foreach($absences as $abs){
+										if($abs->getAttribute("id") === $etd->getAttribute("id")) $is_absent=true;
+									}
+									if($is_absent) {echo "
+								<td>
+										<input checked type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
+										<label class='form-check-label' for='exampleCheck1'>Absent</label>
+									</td>
+								</tr>";}else{
+									echo "
+								<td>
+										<input type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
+										<label class='form-check-label' for='exampleCheck1'>Absent</label>
+									</td>
+								</tr>";
+								}
+
+								//display each sub element in xml file	
+							}
+						}
+						?>
+						<br><br>
+					</tbody>
+				</table>
+			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="modifyAbs" value="Modifier">
+	</form>	
 	</body>
-	<script src="./app.js"></script>
+	<script src="./app.js">
+	
+	</script>
 </html>
