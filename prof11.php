@@ -1,130 +1,11 @@
 <?php
-//load xml database
-$path = 'ESTS.xml';
-$doc = new DOMDocument();
-$doc->load($path);
-$matieresId = getUserMatieres("student1");
-$seances = array();
-foreach($matieresId as $matiereId){
-	$semaine = 1;
-	$semestre = 1;
-	if(isset($_GET['semestre'])) $semestre = $_GET['semestre'];
-	if(isset($_GET['semaine'])) $semaine = $_GET['semaine'];
-	$seances = array_merge($seances, getSeances($matiereId, $semestre, $semaine));
-}
-foreach($seances as $seance){
-	echo "<script>displaySeance(".$seance->getAttribute("id").", ".$seance->getAttribute("numero").", ".$seance->getAttribute("jour").",".$seance->getAttribute("semaine").",".$seance->getAttribute("semester").", ".getMatiere($seance->getAttribute("id_Matieres")).")</script>";
-}
-
-//echo $seances[0]->getElementsByTagName("duree")[0]->nodeValue;
-
-
-
-
-
-/*function getAllSeances(){
-	global $doc;	
-	$allSeances = $doc->getElementsByTagName("Seances")[0]->getElementsByTagName("seance");
-	return $allSeances;
-}*/
-function getSeance($idSeance){
-	global $doc;	
-	$allSeances = $doc->getElementsByTagName("Seances")[0]->getElementsByTagName("seance");
-	foreach($allSeances as $seance){
-		if($seance->getAttribute("id") == $idSeance) return $seance;
-	}
-	return null;
-}
-function editSeance($idSeance, $idMatiere){
-	global $doc;
-	global $path;
-	$seance = getSeance($idSeance); 
-	$seance->setAttribute('id_Matieres', $idMatiere);
-	$doc->save($path);
-}
-function deleteSeance($idSeance){
-    global $doc;
-    global $path;
-    $seance = getSeance($idSeance);
-    $seance->parentNode->removeChild($seance);
-    $doc->save($path);
-}
-/*
-function AddSeance($idSeance, $idMatiere){
-	global $doc;
-	global $path;
-	$seances = $doc->getElementsByTagName("Seances")[0];
-	$seance = $doc->createElement('seance');
-	$seance->setAttribute('id', $idSeance);
-	$seance->setAttribute('id_Matieres', $idMatiere);
-	$seances->appendChild($seance);
-	$doc->save($path);
-}*/
-function getSeances($idMatiere, $semestre, $semaine){
-	global $doc;	
-	$_seances = array();
-	$allSeances = $doc->getElementsByTagName("Seances")[0]->getElementsByTagName("seance");
-	foreach($allSeances as $seance){
-		if($seance->getAttribute("id_Matieres") == $idMatiere && $seance->getAttribute("semestre") == $semestre && $seance->getAttribute("semaine") == $semaine) $_seances[] = $seance;
-	}
-	return $_seances;
-}
-//matieres dont il a access
-function getUserMatieres($loginUser){
-	global $doc;
-	$_matiers =array();
-	$usrsMatiers = $doc->getElementsByTagName("access")[0]->getElementsByTagName("user_matiere");
-	foreach($usrsMatiers as $usrMatiere){
-		if($usrMatiere->getAttribute("login_user") == $loginUser) $_matiers[] = $usrMatiere->getAttribute("id_Matieres");
-	}
-	return $_matiers;
-}
-function getAbsences($seance){
-	global $doc;
-	$_students =array();
-	$absences =$doc->getElementsByTagName("abscences")[0]->getElementsByTagName("abscence");
-	//foreach seance check foreach absence if its the same seance then add it to array
-		foreach($absences as $absence){
-		if($absence->getAttribute("id_Seances") === $seance){
-			$etudiantId = $absence->getAttribute("id_Etudiants");
-			$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
-			foreach($etudiants as $etudiant){
-				if($etudiant->getAttribute("id") == $etudiantId) $_students[] = $etudiant;
-			}
-			}  
-		}
-	return $_students;
-}
-function getAbsence($idEtudiant, $idSeance){
-	global $doc;
-	$absences = $doc->getElementsByTagName("abscences")[0]->getElementsByTagName("abscence");
-	foreach($absences as $absence){
-		if($absence->getAttribute("id_Etudiants") == $idEtudiant && $absence->getAttribute("id_Seances") == $idSeance) return $absence;
-	}
-	return null;
-}
-function AddAbsence($idEtudiant, $idSeance){
-	global $doc;
-	global $path;
-	if($absence = getAbsence($idEtudiant, $idSeance)) return;
-	$absences = $doc->getElementsByTagName("abscences")[0];
-	$absence = $doc->createElement('abscence');
-	$absence->setAttribute('id_Etudiants', $idEtudiant);
-	$absence->setAttribute('id_Seances', $idSeance);
-	$absences->appendChild($absence);
-	$doc->save($path);
-}
-function getMatiere($matiereId){
-	global $doc;
-	$matieres =$doc->getElementsByTagName("Matieres")[0]->getElementsByTagName("matiere");
-	foreach($matieres as $matiere){
-		if($matiere->getAttribute("id") == $matiereId) return $matiere;
-	}
-	return null;
-}
-
-
-
+$xml_data = new SimpleXMLElement("./scholarite.xml", 0, TRUE) or 
+die("Error: Object Creation failure");
+// foreach ($xml_data->etudiant as $data){
+// 	print_r( $data->nom. "<br>");
+// 	//display each sub element in xml file	
+// }
+// print_r($xml_data->xpath("/etudiant/nom")->nom);
 
 ?>
 
@@ -158,7 +39,7 @@ function getMatiere($matiereId){
 				<form>
 					<div class="form-group">
 						<label for="selectSemaine">Select semaine:</label>
-						<select class="form-control" name="semaine" id="selectSemaine">
+						<select class="form-control" id="selectSemaine">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -172,15 +53,14 @@ function getMatiere($matiereId){
 							<option>11</option>
 							<option>12</option>
 						</select>
-						<div class="form-check">
-						<input class="form-check-input" type="radio" name="semestre" id="flexRadioDefault1" value="1">
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
 						<label class="form-check-label" for="flexRadioDefault1">Semestre1</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="semestre" id="flexRadioDefault2" value="2">
+						<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
 						<label class="form-check-label" for="flexRadioDefault2">Semestre2</label>
-					</div>
-					<input type="submit" value="afficher">
 					</div>
 				</form>
 				<table class="emploi table table-hover table-bordered caption-top table-responsive-md">
@@ -200,7 +80,7 @@ function getMatiere($matiereId){
 						<tr>
 							<td class="table-secondary">Lundi</td>
 							<td>
-								<button  onclick="location.href='?seance=1'" type="button" class="btn btn-primary">Dev personnel</button> <br />
+								<button type="button" class="btn btn-primary">Dev personnel</button> <br />
 								<span class="duree">1 heure</span>
 							</td>
 							<td>
@@ -325,7 +205,24 @@ function getMatiere($matiereId){
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<?php 
+							foreach ($xml_data->etudiant as $data)
+							{
+								// echo $data->nom. "<br>";
+								echo "
+								<tr>
+									<td>". $data->nom . "</td> ";
+								echo "<td>". $data->prenom . "</td> ";
+								echo "
+									<td>
+										<input type='checkbox' class='form-check-input' id='exampleCheck1' />
+										<label class='form-check-label' for='exampleCheck1'>Absent</label>
+									</td>
+								</tr>";
+								//display each sub element in xml file	
+							}
+						?>
+						<!-- <tr>
 							<td>John</td>
 							<td>Doe</td>
 							<td>
@@ -348,30 +245,11 @@ function getMatiere($matiereId){
 								<input type="checkbox" class="form-check-input" id="exampleCheck3" />
 								<label class="form-check-label" for="exampleCheck3">Absent</label>
 							</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</body>
-	<form class="absenceEntry">
-	<h3>enregistrer les absences</h3>
-	<div class="etdList">
-	
-	</div>
-	</form>
-	<form class="absenceList">
-	<h3>list des absences</h3>
-	<?php
-	if(isset($_GET['seance'])){
-		print_r(getAbsences("".$_GET['seance']."")[1]->getElementsByTagName("nom")[0]->nodeValue);
-	}
-	?>
-	</form>
-	<script src="./app.js">
-		function displaySeance(seanceId, numero, jour,semaine,semester, seanceNom){
-			seanceCell = document.getElementById("seance-"+numero+"-"+jour+"-"+semaine+"-"+semester);
-			seanceCell.innerText= seanceNom;
-		}
-	</script>
+	<script src="./app.js"></script>
 </html>

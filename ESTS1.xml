@@ -2,9 +2,10 @@
 <ESTS>
   <!-- /////////////////////////// TABLE ROLE /////////////////////////////////// -->
   <Roles>
-    <role id="1">Administrator</role>
-    <role id="2">Student</role>
-    <role id="3">Teacher</role>
+    <role id="1">Professeur</role>
+    <role id="2">Coordonnateur</role>
+    <role id="3">Chef departement</role>
+    <role id="3">Agents de scholarite</role>
   </Roles>
 
     <!-- /////////////////////////// TABLE Users /////////////////////////////////// -->
@@ -20,6 +21,13 @@
     
     <user>
       <login>Prof9</login>
+      <password>password789</password>
+      <Nom>Bob</Nom>
+      <Prenom>Smith</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>Prof10</login>
       <password>password789</password>
       <Nom>Bob</Nom>
       <Prenom>Smith</Prenom>
@@ -71,13 +79,7 @@
       <Prenom>Doe</Prenom>
       <id_Roles>4</id_Roles>
     </user>
-    <user>
-      <login>Agent_scholarite2</login>
-      <password>@12pwd</password>
-      <Nom>DOE1</Nom>
-      <Prenom>John</Prenom>
-      <id_Roles>4</id_Roles>
-    </user>
+    
     <user>
       <login>Agent_scholarite3</login>
       <password>pwd12345</password>
@@ -99,7 +101,15 @@
     <Prenom>JOHN</Prenom>
     <id_Roles>1</id_Roles>
   </user>
-  </Users>
+  <user>
+    <login>Prof11</login>
+    <password>pwd@1890-</password>
+    <Nom>DOE1</Nom>
+    <Prenom>ABDERRAHMANE</Prenom>
+    <id_Roles>1</id_Roles>
+  </user>
+  <user>
+    <login>ChefDept3</login><password>pwd0865_oi</password><Nom>DOE1</Nom><Prenom>Abdelouahad</Prenom><id_Roles>3</id_Roles></user><user><login>ali</login><password>ali9000</password><Nom>alikk</Nom><Prenom>JOHN</Prenom><id_Roles>1</id_Roles></user><user><login>alioo</login><password>12657</password><Nom>DOE1121</Nom><Prenom>ABDERRAHMANE</Prenom><id_Roles>1</id_Roles></user><user><login>admin</login><password>admin</password><Nom>CHEKRY</Nom><Prenom>John</Prenom><id_Roles>3</id_Roles></user><user><login>prof123</login><password>wertyuio7</password><Nom>DOE122</Nom><Prenom>ABDERRAHMANE</Prenom><id_Roles>1</id_Roles></user><user><login>wqwwwwe</login><password>fdfdfdsfd</password><Nom>Abdellaoui</Nom><Prenom>John</Prenom><id_Roles>1</id_Roles></user></Users>
 
     <!-- /////////////////////////// TABLE Permissions /////////////////////////////////// -->
   <Permissions>
@@ -213,7 +223,8 @@
     <role_permission id_Permissions="2" id_Roles="1"/>
     <role_permission id_Permissions="3" id_Roles="1"/>
     <role_permission id_Permissions="1" id_Roles="3"/>
-  </roles_permissions>
+  <role_permission id_Permissions="1" id_Roles="1"/>
+<role_permission id_Permissions="1" id_Roles="1"/><role_permission id_Permissions="2" id_Roles="1"/><role_permission id_Permissions="3" id_Roles="1"/></roles_permissions>
 
   <!-- /////////////////////////// TABLE filieres_niveaux /////////////////////////////////// -->
   <filieres_niveaux>
