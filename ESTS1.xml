@@ -7,18 +7,16 @@
     <role id="3">Chef departement</role>
     <role id="3">Agents de scholarite</role>
   </Roles>
-
-    <!-- /////////////////////////// TABLE Users /////////////////////////////////// -->
+  <!-- /////////////////////////// TABLE Users /////////////////////////////////// -->
   <Users>
     <!-- ////////////////////////// Professeurs ///////////////////////////////// -->
     <user>
       <login>Prof7</login>
-      <password>password789</password>
-      <Nom>Bob</Nom>
-      <Prenom>Smith</Prenom>
+      <password>admin</password>
+      <Nom>BAYAR</Nom>
+      <Prenom>Abdelouahad</Prenom>
       <id_Roles>1</id_Roles>
     </user>
-    
     <user>
       <login>Prof9</login>
       <password>password789</password>
@@ -70,7 +68,6 @@
       <Prenom>Smith</Prenom>
       <id_Roles>3</id_Roles>
     </user>
-    
     <!-- ////////////////////////// Agents de scholarite ///////////////////////////////// -->
     <user>
       <login>Agent_scholarite1</login>
@@ -79,7 +76,6 @@
       <Prenom>Doe</Prenom>
       <id_Roles>4</id_Roles>
     </user>
-    
     <user>
       <login>Agent_scholarite3</login>
       <password>pwd12345</password>
@@ -87,37 +83,74 @@
       <Prenom>Smith</Prenom>
       <id_Roles>4</id_Roles>
     </user>
-  <user>
-    <login>prof1</login>
-    <password>1234</password>
-    <Nom>CHEKRY</Nom>
-    <Prenom>Abdelouahad</Prenom>
-    <id_Roles>1</id_Roles>
-  </user>
-  <user>
-    <login>prof22</login>
-    <password>134</password>
-    <Nom>DOE</Nom>
-    <Prenom>JOHN</Prenom>
-    <id_Roles>1</id_Roles>
-  </user>
-  <user>
-    <login>Prof11</login>
-    <password>pwd@1890-</password>
-    <Nom>DOE1</Nom>
-    <Prenom>ABDERRAHMANE</Prenom>
-    <id_Roles>1</id_Roles>
-  </user>
-  <user>
-    <login>ChefDept3</login><password>pwd0865_oi</password><Nom>DOE1</Nom><Prenom>Abdelouahad</Prenom><id_Roles>3</id_Roles></user><user><login>ali</login><password>ali9000</password><Nom>alikk</Nom><Prenom>JOHN</Prenom><id_Roles>1</id_Roles></user><user><login>alioo</login><password>12657</password><Nom>DOE1121</Nom><Prenom>ABDERRAHMANE</Prenom><id_Roles>1</id_Roles></user><user><login>admin</login><password>admin</password><Nom>CHEKRY</Nom><Prenom>John</Prenom><id_Roles>3</id_Roles></user><user><login>prof123</login><password>wertyuio7</password><Nom>DOE122</Nom><Prenom>ABDERRAHMANE</Prenom><id_Roles>1</id_Roles></user><user><login>wqwwwwe</login><password>fdfdfdsfd</password><Nom>Abdellaoui</Nom><Prenom>John</Prenom><id_Roles>1</id_Roles></user></Users>
-
-    <!-- /////////////////////////// TABLE Permissions /////////////////////////////////// -->
+    <user>
+      <login>prof1</login>
+      <password>1234</password>
+      <Nom>CHEKRY</Nom>
+      <Prenom>Abdelouahad</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>prof22</login>
+      <password>134</password>
+      <Nom>DOE</Nom>
+      <Prenom>JOHN</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>Prof11</login>
+      <password>pwd@1890-</password>
+      <Nom>DOE1</Nom>
+      <Prenom>ABDERRAHMANE</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>ChefDept3</login>
+      <password>pwd0865_oi</password>
+      <Nom>DOE1</Nom>
+      <Prenom>Abdelouahad</Prenom>
+      <id_Roles>3</id_Roles>
+    </user>
+    <user>
+      <login>admin</login>
+      <password>admin</password>
+      <Nom>CHEKRY</Nom>
+      <Prenom>John</Prenom>
+      <id_Roles>3</id_Roles>
+    </user>
+    <user>
+      <login>prof777</login>
+      <password>sdsdsfdsfd</password>
+      <Nom>BAYAR</Nom>
+      <Prenom>John</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>prof215</login>
+      <password>qwtdt43</password>
+      <Nom>DOE</Nom>
+      <Prenom>ali</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+  </Users>
+  <!-- /////////////////////////// TABLE Permissions /////////////////////////////////// -->
   <Permissions>
-    <permission id="1">Create Users</permission>
-    <permission id="2">Edit Users</permission>
-    <permission id="3">Delete Users</permission>
+    <permission id="1">
+      <nom>Faire l'absence</nom>
+    </permission>
+    <permission id="2">
+      <nom>Afficher les absents</nom>
+    </permission>
+    <permission id="3">
+      <nom>Editer absence</nom>
+    </permission>
+    <permission id="4">
+      <nom>Ajouter utilisateur</nom>
+    </permission>
+    <permission id="5">
+      <nom>Supprimer utilisateur</nom>
+    </permission>
   </Permissions>
-
   <!-- /////////////////////////// TABLE Groupes /////////////////////////////////// -->
   <Groupes>
     <groupe id="1" numero="1" id_Filieres="1">
@@ -125,29 +158,25 @@
     <groupe id="2" numero="2" id_Filieres="1">
     </groupe>
   </Groupes>
-
   <!-- /////////////////////////// TABLE Departements /////////////////////////////////// -->
   <Departements>
     <departement id="1">Computer Science</departement>
     <departement id="2">Mathematics</departement>
   </Departements>
-
   <!-- /////////////////////////// TABLE Filieres /////////////////////////////////// -->
   <Filieres>
     <filiere id="1" id_Departements="2">
       <nom>ISIR</nom>
     </filiere>
-      <filiere id="1" id_Departements="2">
+    <filiere id="2" id_Departements="2">
       <nom>GI</nom>
     </filiere>
   </Filieres>
-
-<!-- /////////////////////////// TABLE Niveaux /////////////////////////////////// -->
+  <!-- /////////////////////////// TABLE Niveaux /////////////////////////////////// -->
   <Niveaux>
     <niveau id="1">Undergraduate</niveau>
     <niveau id="2">Graduate</niveau>
   </Niveaux>
-
   <!-- /////////////////////////// TABLE Etudiants /////////////////////////////////// -->
   <Etudiants>
     <etudiant id="9" id_Groupes="1">
@@ -160,13 +189,12 @@
       <nom>Bob</nom>
     </etudiant>
     <etudiant id="3" id_Groupes="2">
-    <nom>Charlie</nom>
+      <nom>Charlie</nom>
     </etudiant>
     <etudiant id="4" id_Groupes="2">
-    <nom>Dexter</nom>
+      <nom>Dexter</nom>
     </etudiant>
   </Etudiants>
-
   <!-- /////////////////////////// TABLE Seances /////////////////////////////////// -->
   <Seances>
     <seance id="1" numero="1" jour="1" semaine="1" semestre="1" id_Matieres="1" id_Groupes="1" enregistre="non">
@@ -179,20 +207,33 @@
       <duree>60</duree>
     </seance>
   </Seances>
-
   <!-- /////////////////////////// TABLE Matieres /////////////////////////////////// -->
   <Matieres>
-    <matiere id="1" id_module="1" id_Filieres="1">
-      <nom>Matiere 1</nom>
+    <matiere id="1" id_module="1" id_Filieres="2">
+      <nom>Algebre</nom>
     </matiere>
-    <matiere id="2" id_module="1" id_Filieres="1">
-      <nom>Matiere 2</nom>
+    <matiere id="2" id_module="1" id_Filieres="2">
+      <nom>mat12</nom>
     </matiere>
     <matiere id="3" id_module="1" id_Filieres="1">
       <nom>Matiere 3</nom>
     </matiere>
+    <matiere id="4" id_module="1" id_Filieres="1">
+      <nom>Matiere 4</nom>
+    </matiere>
+    <matiere id="5" id_module="1" id_Filieres="2">
+      <nom>ml</nom>
+    </matiere>
+    <matiere id="6" id_module="2" id_Filieres="1">
+      <nom>deeplearning</nom>
+    </matiere>
+    <matiere id="7" id_module="1" id_Filieres="1">
+      <nom>AI</nom>
+    </matiere>
+    <matiere id="10" id_module="2" id_Filieres="2">
+      <nom>analyse</nom>
+    </matiere>
   </Matieres>
-
   <!-- /////////////////////////// TABLE Semestres /////////////////////////////////// -->
   <Semestres>
     <semestre id="1">
@@ -200,7 +241,6 @@
     <semestre id="2">
     </semestre>
   </Semestres>
-
   <!-- /////////////////////////// TABLE Emploidutemps /////////////////////////////////// -->
   <Emploidutemps>
     <emploidutemps id="1">
@@ -210,41 +250,31 @@
       <id_Semestres>2</id_Semestres>
     </emploidutemps>
   </Emploidutemps>
-
   <!-- /////////////////////////// TABLE Modules /////////////////////////////////// -->
   <Modules>
     <module id="1">Introduction to Computer Science</module>
     <module id="2">Introduction to Calculus</module>
   </Modules>
-
   <!-- /////////////////////////// TABLE roles_permissions /////////////////////////////////// -->
   <roles_permissions>
     <role_permission id_Permissions="1" id_Roles="1"/>
     <role_permission id_Permissions="2" id_Roles="1"/>
     <role_permission id_Permissions="3" id_Roles="1"/>
     <role_permission id_Permissions="1" id_Roles="3"/>
-  <role_permission id_Permissions="1" id_Roles="1"/>
-<role_permission id_Permissions="1" id_Roles="1"/><role_permission id_Permissions="2" id_Roles="1"/><role_permission id_Permissions="3" id_Roles="1"/></roles_permissions>
-
+  </roles_permissions>
   <!-- /////////////////////////// TABLE filieres_niveaux /////////////////////////////////// -->
   <filieres_niveaux>
     <filiere_niveau id_Filieres="1" id_Niveaux="1"/>
     <filiere_niveau id_Filieres="2" id_Niveaux="2"/>
   </filieres_niveaux>
-
   <!-- /////////////////////////// TABLE access /////////////////////////////////// -->
   <access>
-    <user_matiere login_user="Prof7" id_Matieres="1"/>
-    <user_matiere login_user="Prof8" id_Matieres="2"/>
-    <user_matiere login_user="Prof8" id_Matieres="3"/>
-    <user_matiere login_user="Coordonnateur1" id_Matieres="3"/>
+    <user_matiere login_user="prof777" id_Matieres="2"/>
   </access>
-
   <!-- /////////////////////////// TABLE emplois_filieres /////////////////////////////////// -->
   <emplois_filieres>
     <emploi_filiere id_filiere=""/>
   </emplois_filieres>
-
   <!-- /////////////////////////// TABLE abscences /////////////////////////////////// -->
   <abscences>
     <abscence id_Etudiants="3" id_Seances="2"/>

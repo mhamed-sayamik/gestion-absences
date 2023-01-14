@@ -32,7 +32,7 @@ die("Error: Object Creation failure");
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- <link rel="stylesheet" href="./superUser.css" /> -->
 	</head>
-	<body>
+	<body id="super-user">
 		<div class="sidebar">
 			<div class="logo-details">
 				<!-- <i class="bx bxl-c-plus-plus icon"></i> -->
@@ -43,7 +43,7 @@ die("Error: Object Creation failure");
 			<ul class="nav-list">
 				<li >
 					<span class="prof_span li_span">
-						<i class="sidebarIcon1 bx bx-grid-alt"></i>
+					<i class="fa-sharp fa-solid fa-user"></i>
 						<span class="links_name">Professeur</span>
 					</span>
 					<span class="tooltip sidebar_color">Professeur</span>
@@ -57,22 +57,36 @@ die("Error: Object Creation failure");
 				</li>
 				<li>
 					<span class="li_span chDept_span">
-						<i class="bx bx-chat"></i>
+						<i class="fa-solid fa-user-tie"></i>
 						<span class="links_name">Chef de departement</span>
 					</span>
 					<span class="tooltip">Chef de departement</span>
 				</li>
 				<li>
 					<span class="li_span agt_sch_span">
-						<i class="bx bx-pie-chart-alt-2"></i>
+					<i class="fa-solid fa-circle-user"></i>
 						<span class="links_name">Agent de scolarité</span>
 					</span>
 					<span class="tooltip">Agent de scolarité</span>
 				</li>
+				<li>
+					<span class="li_span matiere_span">
+					<i class="fa-solid fa-school"></i>
+						<span class="links_name">Matieres</span>
+					</span>
+					<span class="tooltip">Matieres</span>
+				</li>
+				<li>
+					<span class="li_span permission_span">
+					<i class="fa-solid fa-ban"></i>
+						<span class="links_name">Permissions</span>
+					</span>
+					<span class="tooltip">Permissions</span>
+				</li>
 
 				<li class="profile">
 					<div class="profile-details">
-						<img src="./Images/Bg/ARR.png" alt="profileImg">
+					<i class="fa-solid fa-toolbox"></i>
 						<div class="name_job">
 							<div class="name">Ali ELKAROUAOUI</div>
 							<div class="job">Admin</div>
@@ -86,19 +100,37 @@ die("Error: Object Creation failure");
 			<div class="nav1">
 				<img src="./Images/est_logo.png" alt="est safi logo" class="logo_est" />
 				<div class="title_nav">Interface super user</div>
+				<div class="dropdown">
+					<button
+						class="btn btn-secondary dropdown-toggle"
+						type="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>
+						Language
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+						<button button id="arabic" class="dropdown-item" onclick="changeLanguage('ar')">
+							Arabic
+						</button>
+						<button id="french" class="dropdown-item" onclick="changeLanguage('fr')">French</button>
+						<button id="english" class="dropdown-item" onclick="changeLanguage('en')">English</button>
+					</div>
+				</div>
 				<div class="signup1"><a href="logout.php" class="signupLink">Se déconnecter</a></div>
 			</div>
 
 			<div class="container">
 				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Ajouter</button>
+				<button type="button" class="btn btn-primary ajouter_user" data-toggle="modal" data-target="#exampleModalCenter">Ajouter user</button>
+				<!-- ////////////////////////////// Modal Ajouter utilisateur //////////////////////////////////////////// -->
 
-				<!-- Modal -->
 				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+							<h5 class="modal-title" id="exampleModalLongTitle">Ajouter utilisateur</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -131,34 +163,7 @@ die("Error: Object Creation failure");
 										<option value="4">Agent de scholarite</option>
 									</select>
 								</div>
-								<div class="form-group">
-									<div class="label">Permission</div>
-									<div class="form-check">
-										<label class="form-check-label" for="absenceNote">
-											<input type="checkbox" class="form-check-input" name="absenceNote" value="1">Faire l'absence
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label" for="absenceList">
-											<input type="checkbox" class="form-check-input" name="absenceList" value="2">Afficher les absents
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label" for="absenceEdit">
-											<input type="checkbox" class="form-check-input" name="absenceEdit" value="3">Editer absence
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label" for="userAdd">
-											<input type="checkbox" class="form-check-input" name="userAdd" value="4">Ajouter utilisateur
-										</label>
-									</div>
-									<div class="form-check">
-										<label class="form-check-label" for="userDelete">
-											<input type="checkbox" class="form-check-input" name="userDelete" value="5">Supprimer utilisateur
-										</label>
-									</div>
-								</div>
+								
 								<button type="submit" class="btn btn-primary">Ajouter</button>
 							</form>
 						</div>
@@ -169,11 +174,12 @@ die("Error: Object Creation failure");
 						</div>
 					</div>
 				</div>
+				<!-- ////////////////////////////// Modal Editer utilisateur //////////////////////////////////////////// -->
 				<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+							<h5 class="modal-title" id="exampleModalLongTitle">Editer utilisateur</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -206,6 +212,253 @@ die("Error: Object Creation failure");
 						</div>
 					</div>
 				</div>
+				<!-- ////////////////////////////// Modal Ajouter matiere //////////////////////////////////////////// -->
+				
+				<div class="modal fade" id="exampleModalCenter12" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Ajouter matiere</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="add-mat-form">
+								<div class="form-group">
+									<label for="mat_nom">Nom du matiere:</label>
+									<input type="text" id="mat_nom" name="mat_nom" class="form-control" placeholder="Entrer un nom du matiere unique"/><br />
+								</div>
+								<div class="form-group">
+									<label for="module_nom">Nom du module:</label>
+									<select class="form-control" name="module_nom" id="module_nom">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Modules->module as $module){
+												echo "<option value=$module[id]>$module</option>";
+											}
+										?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="filiere_nom">Nom du filiere:</label>
+									<select class="form-control" name="filiere_nom" id="filiere_nom">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Filieres->filiere as $filiere){
+												echo "<option value=$filiere[id]>$filiere->nom</option>";
+											}
+										?>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary">Ajouter</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- ////////////////////////////// Modal Editer matiere //////////////////////////////////////////// -->
+
+				<div class="modal fade" id="exampleModalCenter22" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Editer matiere</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="edit_mat_form">
+								<div class="form-group">
+									<label for="mat_nom_edit">Nom du matiere:</label>
+									<input type="text" id="mat_nom_edit" name="mat_nom_edit" class="form-control" placeholder="Entrer un nom du matiere unique"/><br />
+								</div>
+								<div class="form-group">
+									<label for="module_nom_edit">Nom du module:</label>
+									<select class="form-control" name="module_nom_edit" id="module_nom_edit">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Modules->module as $module){
+												echo "<option value=$module[id]>$module</option>";
+											}
+										?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="filiere_nom_edit">Nom du filiere:</label>
+									<select class="form-control" name="filiere_nom_edit" id="filiere_nom_edit">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Filieres->filiere as $filiere){
+												echo "<option value=$filiere[id]>$filiere->nom</option>";
+											}
+										?>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary">Modifier</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- ////////////////////////////// Modal Ajouter accès //////////////////////////////////////////// -->
+
+				<div class="modal fade" id="exampleModalCenter13" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Ajouter accès</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="add_access_form">
+								
+								<div class="form-group">
+									<label for="mat_nom_user">Nom du matiere:</label>
+									<select class="form-control" name="mat_nom_user" id="mat_nom_user">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Matieres->matiere as $matiere){
+												echo "<option value=$matiere[id]>$matiere->nom</option>";
+											}
+										?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="login_user">Login utilisateur:</label>
+									<select class="form-control" name="login_user" id="login_user">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Users->user as $user){
+												echo "<option value=$user->login>$user->login</option>";
+											}
+										?>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary">Ajouter</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						</div>
+						</div>
+					</div>
+				</div>
+				<!-- /////////////////////////////////////////// ADD PERMISSION //////////////////////////////////// -->
+
+				<div class="modal fade" id="exampleModalCenter14" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Ajouter permission</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="add_permission_form">
+								<div class="form-group">
+									<label for="perm_nom">Nom du permission:</label>
+									<input type="text" id="perm_nom" name="perm_nom" class="form-control" placeholder="Entrer un nom de permission"/><br />
+								</div>
+								<button type="submit" class="btn btn-primary">Ajouter</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- /////////////////////////////////////// EDIT PERMISSION //////////////////////////////////////////// -->
+
+				<div class="modal fade" id="exampleModalCenter15" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Editer permission</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="edit_permission_form">
+								<div class="form-group">
+									<label for="perm_nom_edit">Nom du permission:</label>
+									<input type="text" id="perm_nom_edit" name="perm_nom_edit" class="form-control" placeholder="Entrer un nom du permission"/><br />
+								</div>
+								
+								<button type="submit" class="btn btn-primary">Modifier</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- /////////////////////////////////////// ADD PERMISSION ROLE //////////////////////////////////////////// -->
+				<div class="modal fade" id="exampleModalCenter16" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Ajouter permission_role</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="add_perm_role_form">
+								<div class="form-group">
+									<label for="perm_nom_add">Nom du permission:</label>
+									<select class="form-control" name="perm_nom_add" id="perm_nom_add">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Permissions->permission as $permission){
+												echo "<option value=$permission[id]>$permission->nom</option>";
+											}
+										?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="role_nom_add">Nom du role:</label>
+									<select class="form-control" name="role_nom_add" id="role_nom_add">
+										<option value=""></option>
+										<?php 
+											foreach ($xml_data->Roles->role as $role){
+												echo "<option value=$role[id]>$role</option>";
+											}
+										?>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary">Ajouter</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+						</div>
+					</div>
+				</div>
+
 				<table id="myTable" class="listeProf table table-hover caption-top table-bordered table-striped table-responsive-md">
 					<caption>
 						Liste des Professeurs
@@ -366,11 +619,171 @@ die("Error: Object Creation failure");
 						?>
 					</tbody>
 				</table>
+				<!-- ////////////////////////// GESTION MATIERE /////////////////////////////////////////////// -->
+				<button type="button" class="btn btn-primary ajouter_mat none" data-toggle="modal" data-target="#exampleModalCenter12">Ajouter matiere</button>
+				<table id="myTable_list_mat" class="none listeProf table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption>
+						Liste des matieres
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Matiere</th>
+							<th>Module</th>
+							<th>Filiere</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$i = 0;
+							foreach ($xml_data->Matieres->matiere as $matiere){
+								// echo $data->nom. "<br>";
+									echo "
+									<tr>
+										<td>". $matiere->nom . "</td> ";
+										
+										foreach ($xml_data->Modules->module as $module){
+											if((int)$module['id'] == (int)$matiere['id_module']){
+												echo "<td>". $module . "</td> ";
+												break;
+											}
+										}
+										foreach ($xml_data->Filieres->filiere as $filiere){
+											if((int)$filiere['id'] == (int)$matiere['id_Filieres']){
+												echo "<td>". $filiere->nom . "</td> ";
+												break;
+											}
+										}
+									echo "
+										<td>
+										<button class='deleteBtn2 btn btn-danger btn-sm rounded-0' type='button' data-toggle='tooltip' data-placement='top' title='Delete' data-login='$matiere[id]'><i class='fa fa-trash'></i></button>
+										<button class='editBtn2 btn btn-success btn-sm rounded-0' type='button' data-toggle='modal' data-target='#exampleModalCenter22' data-placement='top' title='Edit' data-login='$matiere[id]'><i class='fa fa-edit'></i></button>
+										</td>
+									</tr>";
+									$i += 1; 
+								//display each sub element in xml file	
+							}
+						?>
+					</tbody>
+				</table>
+				<button type="button" class="btn btn-primary ajouter_mat none" data-toggle="modal" data-target="#exampleModalCenter13">Ajouter access</button>
+				<table id="myTable_matiere" class="none listeProf table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption>
+						Liste des accès
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Utilisateur</th>
+							<th>Matiere</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$i = 0;
+							foreach ($xml_data->access->user_matiere as $user_matiere)
+							{
+								// echo $data->nom. "<br>";
+									echo "
+									<tr> 
+										<td>". $user_matiere['login_user'] . "</td> ";
+									foreach ($xml_data->Matieres->matiere as $matiere){
+										if((int)$matiere['id'] == (int)$user_matiere['id_Matieres']){
+											echo "<td>". $matiere->nom . "</td> ";
+											break;
+										}
+									}
+									echo "
+										<td>
+											<button class='deleteBtn1 btn btn-danger btn-sm rounded-0' type='button' data-toggle='tooltip' data-placement='top' title='Delete' data-login='$user_matiere[id_Matieres]'><i class='fa fa-trash'></i></button>
+										</td>
+									</tr>";
+									$i += 1;
+								//display each sub element in xml file	
+							}
+						?>
+					</tbody>
+				</table>
+				<!-- ////////////////////// PERMISSIONS ////////////////////////////////////////////////// -->
+				<button type="button" class="btn btn-primary ajouter_perm none" data-toggle="modal" data-target="#exampleModalCenter14">Ajouter permission</button>
+				<table id="myTable_list_perm" class="none listeProf table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption>
+						Liste des permissions
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Permission</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$i = 0;
+							foreach ($xml_data->Permissions->permission as $permission){
+								// echo $data->nom. "<br>";
+									echo "
+									<tr>
+										<td>". $permission->nom . "</td> ";
+										
+									echo "
+										<td>
+										<button class='deleteBtn3 btn btn-danger btn-sm rounded-0' type='button' data-toggle='tooltip' data-placement='top' title='Delete' data-login='$permission[id]'><i class='fa fa-trash'></i></button>
+										<button class='editBtn3 btn btn-success btn-sm rounded-0' type='button' data-toggle='modal' data-target='#exampleModalCenter15' data-placement='top' title='Edit' data-login='$permission[id]'><i class='fa fa-edit'></i></button>
+										</td>
+									</tr>";
+									$i += 1; 
+								//display each sub element in xml file
+							}
+						?>
+					</tbody>
+				</table>
+				<button type="button" class="btn btn-primary ajouter_perm_role none" data-toggle="modal" data-target="#exampleModalCenter16">Ajouter permission_role </button>
+				<table id="myTable_permission_role" class="none listeProf table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption>
+						Liste des permissions_roles
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Role</th>
+							<th>Permission</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$i = 0;
+							foreach ($xml_data->roles_permissions->role_permission as $role_permission)
+							{
+								// echo $data->nom. "<br>";
+									echo "
+									<tr>";
+
+									foreach ($xml_data->Roles->role as $role){
+										if((int)$role['id'] == (int)$role_permission['id_Roles']){
+											echo "<td>". $role . "</td> ";
+											break;
+										}
+									}
+
+									foreach ($xml_data->Permissions->permission as $permission){
+										if((int)$permission['id'] == (int)$role_permission['id_Permissions']){
+											echo "<td>". $permission->nom . "</td> ";
+											break;
+										}
+									}
+									echo "
+										<td>
+											<button class='deleteBtn4 btn btn-danger btn-sm rounded-0' type='button' data-toggle='tooltip' data-placement='top' title='Delete' data-login='$role_permission[id_Permissions].$role_permission[id_Roles]'><i class='fa fa-trash'></i></button>
+										</td>
+									</tr>";
+									$i += 1;
+								//display each sub element in xml file	
+							}
+						?>
+					</tbody>
+				</table>
 			</div>
-			
-			
 		</section>
 	</body>
 	<script src="./super.js"></script>
-	
 </html>
