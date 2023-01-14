@@ -269,6 +269,8 @@
     <role_permission id_Permissions="1" id_Roles="1"/>
     <role_permission id_Permissions="2" id_Roles="1"/>
     <role_permission id_Permissions="3" id_Roles="1"/>
+    <role_permission id_Permissions="4" id_Roles="1"/>
+    <role_permission id_Permissions="5" id_Roles="1"/>
     <role_permission id_Permissions="1" id_Roles="3"/>
   </roles_permissions>
   <!-- /////////////////////////// TABLE filieres_niveaux /////////////////////////////////// -->
@@ -278,9 +280,9 @@
   </filieres_niveaux>
   <!-- /////////////////////////// TABLE access /////////////////////////////////// -->
   <access>
-    <user_matiere login_user="prof7" id_Matieres="2"/>
-    <user_matiere login_user="prof7" id_Matieres="1"/>
-    <user_matiere login_user="prof7" id_Matieres="3"/>
+    <user_matiere login_user="Prof7" id_Matieres="2"/>
+    <user_matiere login_user="Prof7" id_Matieres="1"/>
+    <user_matiere login_user="Prof7" id_Matieres="3"/>
   </access>
   <!-- /////////////////////////// TABLE emplois_filieres /////////////////////////////////// -->
   <emplois_filieres>

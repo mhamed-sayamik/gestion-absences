@@ -31,7 +31,7 @@
 		deleteAbsences($seance);
 		if(isset($_POST['modifyAbsenceList'])){
 			foreach($_POST['modifyAbsenceList'] as $absent){
-			AddAbsence($absent, $seance);
+				AddAbsence($absent, $seance);
 			}
 		}
 		
@@ -171,14 +171,14 @@
 		foreach($groupes as $groupe){
 			if($groupe->getAttribute("id") == $groupeId) return $groupe->getAttribute("id_Filieres");
 		}
-		}
+	}
 	function getFiliere($filiereId){
-			global $doc;
-			$filieres =$doc->getElementsByTagName("Filieres")[0]->getElementsByTagName("filiere");
-			foreach($filieres as $filiere){
-				if($filiere->getAttribute("id") == $filiereId) return $filiere;
-			}
-			return null;
+		global $doc;
+		$filieres =$doc->getElementsByTagName("Filieres")[0]->getElementsByTagName("filiere");
+		foreach($filieres as $filiere){
+			if($filiere->getAttribute("id") == $filiereId) return $filiere;
+		}
+		return null;
 	}
 	function deleteAbsences($idSeance) {
 		global $doc;
@@ -188,20 +188,20 @@
 		$absencesToKeep = array();
 		$absences = $doc->getElementsByTagName("abscences")[0]->getElementsByTagName("abscence");
 		foreach($absences as $absence) {
-		if($absence->getAttribute("id_Seances") !== $idSeance) {
-			$absencesToKeep[] = $absence;
-		}
+			if($absence->getAttribute("id_Seances") !== $idSeance) {
+				$absencesToKeep[] = $absence;
+			}
 		}
 	
 		// Remove all absences from the document
 		$absencesNode = $doc->getElementsByTagName("abscences")[0];
 		while($absencesNode->hasChildNodes()) {
-		$absencesNode->removeChild($absencesNode->firstChild);
+			$absencesNode->removeChild($absencesNode->firstChild);
 		}
 	
 		// Add the absences that we want to keep back to the document
 		foreach($absencesToKeep as $absence) {
-		$absencesNode->appendChild($absence);
+			$absencesNode->appendChild($absence);
 		}
 	
 		$doc->save($path);
@@ -210,44 +210,44 @@
 <!DOCTYPE html>
 <script>
 	function displaySeance(seanceId, numero, jour,semaine,semester, seanceNom){
-			seanceCellId ="seance-"+numero+"-"+jour+"-"+semaine+"-"+semester;
-			seanceCell = document.getElementById(seanceCellId);
-			button = seanceCell.getElementsByTagName("button")[0];
-			button.innerText = seanceNom;
-			button.style.display = "inline"; 
-			button.setAttribute("onclick",'location.href="?semestre='+semester+'&semaine='+semaine+'&seance='+seanceId+'"');
+		seanceCellId ="seance-"+numero+"-"+jour+"-"+semaine+"-"+semester;
+		seanceCell = document.getElementById(seanceCellId);
+		button = seanceCell.getElementsByTagName("button")[0];
+		button.innerText = seanceNom;
+		button.style.display = "inline"; 
+		button.setAttribute("onclick",'location.href="?semestre='+semester+'&semaine='+semaine+'&seance='+seanceId+'"');
 			
-		}
-		function isEnregistre(){
-			document.getElementById("listeAbs").style.display="table" ;
-			document.getElementById("absenceModify").style.display="block";
-			document.getElementById("absenceEntry").style.display="none";
-		}
-function changeLanguage(lang) {
-localStorage.setItem("selectedLang", lang);
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var xmlDoc = this.responseXML;
-      var page = document.getElementsByTagName("body")[0].getAttribute("id");
-      var elements = xmlDoc.getElementsByTagName("translations")[0].getElementsByTagName(page)[0].getElementsByTagName(lang)[0];
-      
-	  for (var i = 0; i < elements.childNodes.length; i++) {
-        var element = elements.childNodes[i];
-		console.log(element);
-        var elementId = element.nodeName;
-        var elementText = element.textContent;
-		
-        var elementOnPage = document.getElementById(elementId);
-        if (elementOnPage) {
-          elementOnPage.innerHTML = elementText;
-        }
-      }
-    }
-  };
-  xhttp.open("GET", "translations.xml", true);
-  xhttp.send();
-}
+	}
+	function isEnregistre(){
+		document.getElementById("listeAbs").style.display="table" ;
+		document.getElementById("absenceModify").style.display="block";
+		document.getElementById("absenceEntry").style.display="none";
+	}
+	function changeLanguage(lang) {
+		localStorage.setItem("selectedLang", lang);
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var xmlDoc = this.responseXML;
+				var page = document.getElementsByTagName("body")[0].getAttribute("id");
+				var elements = xmlDoc.getElementsByTagName("translations")[0].getElementsByTagName(page)[0].getElementsByTagName(lang)[0];
+				
+				for (var i = 0; i < elements.childNodes.length; i++) {
+					var element = elements.childNodes[i];
+					console.log(element);
+					var elementId = element.nodeName;
+					var elementText = element.textContent;
+					
+					var elementOnPage = document.getElementById(elementId);
+					if (elementOnPage) {
+						elementOnPage.innerHTML = elementText;
+					}
+				}
+			}
+		};
+		xhttp.open("GET", "translations.xml", true);
+		xhttp.send();
+	}
 		
 </script>
 <html lang="en">
@@ -283,8 +283,6 @@ localStorage.setItem("selectedLang", lang);
 				<div class="signup1"><a href="logout.php" class="signupLink">Se déconnecter</a></div>
 			</div>
 				
-			
-
 			<div class="container">
 				<form >
 					<div class="form-group">
@@ -329,78 +327,75 @@ localStorage.setItem("selectedLang", lang);
 					</thead>
 					<tbody>
 					<?php 
-					echo "<tr>";
-					for($jour=1;$jour<=6;$jour++){
-						$leJour = array("Demanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
-						echo "<td class='table-secondary'>".$leJour[$jour]."</td>";
-						for($numero=1;$numero<=4;$numero++){
-						global $semaine,$semestre;
-						echo "<td id='seance-".$numero."-".$jour."-".$semaine."-".$semestre."'>
-						<button  type='button' style='display:none' class='btn btn-primary'>libre</button>
-					</td>";
-						}
 						echo "<tr>";
-					}
-
-					foreach($seances as $seance){
-					global $semaine,$semestre;
-					$seanceId = $seance->getAttribute("id");
-					$seanceNum = $seance->getAttribute("numero");
-					$seanceJ = $seance->getAttribute("jour");
-					$seanceMatiere = getMatiere($seance->getAttribute("id_Matieres"));
-					$seanceMatiereNom = $seanceMatiere->getElementsByTagname("nom")[0]->nodeValue;
-					echo "<script>displaySeance(".$seanceId.", ".$seanceNum.", ".$seanceJ.",".$semaine.",".$semestre.", "."'$seanceMatiereNom'".")</script>";
-					}
-							?>
-						
-					</tbody>
-				</table><br><br>
-			</div>
-		</div>
-	
-	<form class="absenceEntry" id="absenceEntry" method="POST">
-	<table id="listAbsences"  class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-					<caption id="AbsEntryCa">
-						Enregistrer les absence
-					</caption>
-					<thead class="thead-dark">
-						<tr>
-							<th>Nom</th>
-							<th>Absence</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php 
-						//if seance already enregistre hide registration form etc
-						
-						if(isset($_GET['seance'])){
-							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
-							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
-							$__students = array();
-							foreach($etudiants as $etudiant){
-							if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
+						for($jour=1;$jour<=6;$jour++){
+							$leJour = array("Demanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+							echo "<td class='table-secondary'>".$leJour[$jour]."</td>";
+							for($numero=1;$numero<=4;$numero++){
+							global $semaine,$semestre;
+							echo "<td id='seance-".$numero."-".$jour."-".$semaine."-".$semestre."'>
+							<button  type='button' style='display:none' class='btn btn-primary'>libre</button>
+						</td>";
 							}
-							foreach ($__students as $etd)
-							{
-								echo "
-								<tr>
-									<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
-								echo "
-									<td>
-										<input type='checkbox' class='form-check-input' name='absenceList[]'  value='". $etd->getAttribute("id")."'/>
-										<label class='form-check-label' for='exampleCheck1'>Absent</label>
-									</td>
-								</tr>";
-								//display each sub element in xml file	
-							}
+							echo "<tr>";
 						}
-						?>
-						<br><br>
+
+						foreach($seances as $seance){
+						global $semaine,$semestre;
+						$seanceId = $seance->getAttribute("id");
+						$seanceNum = $seance->getAttribute("numero");
+						$seanceJ = $seance->getAttribute("jour");
+						$seanceMatiere = getMatiere($seance->getAttribute("id_Matieres"));
+						$seanceMatiereNom = $seanceMatiere->getElementsByTagname("nom")[0]->nodeValue;
+						echo "<script>displaySeance(".$seanceId.", ".$seanceNum.", ".$seanceJ.",".$semaine.",".$semestre.", "."'$seanceMatiereNom'".")</script>";
+						}
+					?>
+						
 					</tbody>
 				</table>
-			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="enregistreAbs" value="Enregistrer">
-	</form>
-	<table id="listeAbs" style="display:none" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+
+				<form class="absenceEntry" id="absenceEntry" method="POST">
+					<table id="listAbsences"  class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+						<caption id="AbsEntryCa">
+							Enregistrer les absence
+						</caption>
+						<thead class="thead-dark">
+							<tr>
+								<th>Nom</th>
+								<th>Absence</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+							//if seance already enregistre hide registration form etc
+							
+								if(isset($_GET['seance'])){
+									$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
+									$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+									$__students = array();
+									foreach($etudiants as $etudiant){
+										if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
+									}
+									foreach ($__students as $etd){
+										echo "
+										<tr>
+											<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
+										echo "
+											<td>
+												<input type='checkbox' class='form-check-input' name='absenceList[]'  value='". $etd->getAttribute("id")."'/>
+												<label class='form-check-label' for='exampleCheck1'>Absent</label>
+											</td>
+										</tr>";
+										//display each sub element in xml file	
+									}
+								}
+							?>
+							<br><br>
+						</tbody>
+					</table>
+					<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="enregistreAbs" value="Enregistrer">
+				</form>
+				<table id="listeAbs" style="display:none" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
 					<caption id="listeAbsCa">
 						Liste des absences
 					</caption>
@@ -428,62 +423,62 @@ localStorage.setItem("selectedLang", lang);
 						<br><br>
 					</tbody>
 				</table>
-		
-	
-	</form>
-	<form class="absenceModify" style="display:none" id="absenceModify" method="POST">
-	<table id="modifyAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-					<caption id="modifyAbsCa">
-						Modifier les absence
-					</caption>
-					<thead class="thead-dark">
-						<tr >
-							<th id="el1">Nom</th>
-							<th>Absence</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php 
-						if(isset($_GET['seance'])){
-							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
-							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
-							$__students = array();
-							foreach($etudiants as $etudiant){
-							if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
-							}
-							foreach ($__students as $etd)
-							{	
-								echo "
-								<tr>
-									<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
-									global $absences;
-									$is_absent=false;
-									foreach($absences as $abs){
-										if($abs->getAttribute("id") === $etd->getAttribute("id")) $is_absent=true;
-									}
-									if($is_absent) {echo "
-								<td>
-										<input checked type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
-										<label class='form-check-label' for='exampleCheck1'>Absent</label>
-									</td>
-								</tr>";}else{
-									echo "
-								<td>
-										<input type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
-										<label class='form-check-label' for='exampleCheck1'>Absent</label>
-									</td>
-								</tr>";
+				<form class="absenceModify" style="display:none" id="absenceModify" method="POST">
+					<table id="modifyAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+						<caption id="modifyAbsCa">
+							Modifier les absence
+						</caption>
+						<thead class="thead-dark">
+							<tr >
+								<th id="el1">Nom</th>
+								<th>Absence</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+							if(isset($_GET['seance'])){
+								$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
+								$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+								$__students = array();
+								foreach($etudiants as $etudiant){
+								if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
 								}
-
-								//display each sub element in xml file	
+								foreach ($__students as $etd)
+								{	
+									echo "
+									<tr>
+										<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
+										global $absences;
+										$is_absent=false;
+										foreach($absences as $abs){
+											if($abs->getAttribute("id") === $etd->getAttribute("id")) $is_absent=true;
+										}
+										if($is_absent) {echo "
+									<td>
+											<input checked type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
+											<label class='form-check-label' for='exampleCheck1'>Absent</label>
+										</td>
+									</tr>";}else{
+										echo "
+									<td>
+											<input type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
+											<label class='form-check-label' for='exampleCheck1'>Absent</label>
+										</td>
+									</tr>";
+									}
+	
+									//display each sub element in xml file	
+								}
 							}
-						}
-						?>
-						<br><br>
-					</tbody>
-				</table>
-			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="modifyAbs" value="Modifier">
-	</form>	
+							?>
+							<br><br>
+						</tbody>
+					</table>
+					<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="modifyAbs" value="Modifier">
+				</form>	
+			</div>
+		</div>
+	
 	</body>
 	<script >
 	var selectedLang = localStorage.getItem("selectedLang");

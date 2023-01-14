@@ -1,5 +1,7 @@
 <?php
 //load xml database
+session_start();
+if(!isset($_SESSION['usernameProf'])) header("Location: loginInterface.php");
 $xml_data = new SimpleXMLElement("./ESTS1.xml", 0, TRUE) or 
 die("Error: Object Creation failure");
 
