@@ -1,25 +1,32 @@
 
 <?php
 //load xml database
-$path = 'ESTS.xml';
+session_start();
+//if(!isset($_SESSION['username'])) header("Location: login.php");
+//$username = $_SESSION['username'];
+$username = "student1";
+$path = 'ESTS1.xml';
 $doc = new DOMDocument();
 $doc->load($path);
-$matieresId = getUserMatieres("student1");
+$matieresId = getUserMatieres($username);
 $semaine = 1;
 $semestre = 1;
 if(isset($_GET['semestre'])) $semestre = $_GET['semestre'];
 if(isset($_GET['semaine'])) $semaine = $_GET['semaine'];
 if(isset($_GET['seance'])) $seance = $_GET['seance'];
 $seances = array();
-echo $semestre,$semaine;
 foreach($matieresId as $matiereId){
 	global $semaine,$semestre;
 	$seances = array_merge($seances, getSeances($matiereId, $semestre, $semaine));
 }
 if(isset($_POST['enregistreAbs'])){
+	global $doc;
+	global $path;
 	global $seance;
 	foreach($_POST['absenceList'] as $absent)
 	AddAbsence($absent, $seance);
+	getSeance($seance)->setAttribute("enregistre","oui");
+	$doc->save($path);	
 }if(isset($_POST['modifyAbs'])){
 	global $seance;
 	deleteAbsences($seance);
@@ -30,6 +37,7 @@ if(isset($_POST['enregistreAbs'])){
 	}
 	
 }
+
 //echo $seances[0]->getElementsByTagName("duree")[0]->nodeValue;
 
 
@@ -92,6 +100,27 @@ function getUserMatieres($loginUser){
 		if($usrMatiere->getAttribute("login_user") == $loginUser) $_matiers[] = $usrMatiere->getAttribute("id_Matieres");
 	}
 	return $_matiers;
+}
+function getUserPerms($loginUser){
+	global $doc;
+	$users = $doc->getElementsByTagName("user");
+    for ($i = 0; $i < $users->length; $i++) {
+        $user = $users[$i];
+        $userLogin = $user->getElementsByTagName("login")[0]->nodeValue;
+        if ($userLogin == $loginUser) {
+            $role = $user->getElementsByTagName("id_Roles")[0]->nodeValue;
+            $permissionList = array();
+            $roles_permissions = $doc->getElementsByTagName("role_permission");
+            for ($j = 0; $j < $roles_permissions->length; $j++) {
+                $role_permission = $roles_permissions[$j];
+                if ($role_permission->getAttribute("id_Roles") == $role) {
+                    $permissionList[] = $role_permission->getAttribute("id_Permissions");
+                }
+            }
+            return $permissionList;
+        }
+    }
+    return null;
 }
 function getAbsences($seance){
 	global $doc;
@@ -184,13 +213,43 @@ function deleteAbsences($idSeance) {
 	function displaySeance(seanceId, numero, jour,semaine,semester, seanceNom){
 			seanceCellId ="seance-"+numero+"-"+jour+"-"+semaine+"-"+semester;
 			seanceCell = document.getElementById(seanceCellId);
-			console.log(seanceCellId);
 			button = seanceCell.getElementsByTagName("button")[0];
 			button.innerText = seanceNom;
 			button.style.display = "inline"; 
 			button.setAttribute("onclick",'location.href="?semestre='+semester+'&semaine='+semaine+'&seance='+seanceId+'"');
 			
 		}
+		function isEnregistre(){
+			document.getElementById("listeAbs").style.display="table" ;
+			document.getElementById("absenceModify").style.display="block";
+			document.getElementById("absenceEntry").style.display="none";
+		}
+function changeLanguage(lang) {
+localStorage.setItem("selectedLang", lang);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var xmlDoc = this.responseXML;
+      var page = document.getElementsByTagName("body")[0].getAttribute("id");
+      var elements = xmlDoc.getElementsByTagName("translations")[0].getElementsByTagName(page)[0].getElementsByTagName(lang)[0];
+      
+	  for (var i = 0; i < elements.childNodes.length; i++) {
+        var element = elements.childNodes[i];
+		console.log(element);
+        var elementId = element.nodeName;
+        var elementText = element.textContent;
+		
+        var elementOnPage = document.getElementById(elementId);
+        if (elementOnPage) {
+          elementOnPage.innerHTML = elementText;
+        }
+      }
+    }
+  };
+  xhttp.open("GET", "translations.xml", true);
+  xhttp.send();
+}
+		
 </script>
 <html lang="en">
 	<head>
@@ -207,19 +266,30 @@ function deleteAbsences($idSeance) {
 		<link rel="stylesheet" href="style.css" />
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
-	<body>
+	<body id="prof">
 		<div class="container1">
 			<div class="nav1">
 				<img src="./Images/est_logo.png" alt="est safi logo" class="logo_est" />
-				<div class="title_nav">Interface professeur</div>
+				<div class="title_nav">Gerer les absences</div>
+				<div class="dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Language
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+					<button	button id="arabic" class="dropdown-item" onclick="changeLanguage('ar')">Arabic</button>
+					<button id="french"  class="dropdown-item" onclick="changeLanguage('fr')">French</button>
+					<button id="english" class="dropdown-item" onclick="changeLanguage('en')">English</button>
+				</div>
+				</div>
 				<div class="signup1"><a href="logout.php" class="signupLink">Se déconnecter</a></div>
 			</div>
+				
 			
 
 			<div class="container">
 				<form >
 					<div class="form-group">
-						<label for="selectSemaine">Select semaine:</label>
+						<label for="selectSemaine">Selectionnez la semaine:</label>
 						<select style="margin-bottom:1em;" class="form-control" name="semaine" id="selectSemaine">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -246,7 +316,7 @@ function deleteAbsences($idSeance) {
 					</div>
 				</form>
 				<table id="emploi" class="emploi table table-hover table-bordered caption-top table-responsive-md">
-					<caption>
+					<caption id="emploiCa">
 						Emploi du temps
 					</caption>
 					<thead class="table-primary">
@@ -289,9 +359,9 @@ function deleteAbsences($idSeance) {
 			</div>
 		</div>
 	
-	<form class="absenceEntry" method="POST">
-	<table id="listAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-					<caption>
+	<form class="absenceEntry" id="absenceEntry" method="POST">
+	<table id="listAbsences"  class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption id="AbsEntryCa">
 						Enregistrer les absence
 					</caption>
 					<thead class="thead-dark">
@@ -302,6 +372,8 @@ function deleteAbsences($idSeance) {
 					</thead>
 					<tbody>
 						<?php 
+						//if seance already enregistre hide registration form etc
+						
 						if(isset($_GET['seance'])){
 							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
 							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
@@ -329,9 +401,9 @@ function deleteAbsences($idSeance) {
 				</table>
 			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="enregistreAbs" value="Enregistrer">
 	</form>
-	<table id="listeAbs" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-					<caption>
-						Liste des absence
+	<table id="listeAbs" style="display:none" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption id="listeAbsCa">
+						Liste des absences
 					</caption>
 					<thead class="thead-dark">
 						<tr>
@@ -360,14 +432,14 @@ function deleteAbsences($idSeance) {
 		
 	
 	</form>
-	<form class="absenceModify" method="POST">
+	<form class="absenceModify" style="display:none" id="absenceModify" method="POST">
 	<table id="modifyAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-					<caption>
+					<caption id="modifyAbsCa">
 						Modifier les absence
 					</caption>
 					<thead class="thead-dark">
-						<tr>
-							<th>Nom</th>
+						<tr >
+							<th id="el1">Nom</th>
 							<th>Absence</th>
 						</tr>
 					</thead>
@@ -414,7 +486,19 @@ function deleteAbsences($idSeance) {
 			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="modifyAbs" value="Modifier">
 	</form>	
 	</body>
-	<script src="./app.js">
-	
+	<script >
+	var selectedLang = localStorage.getItem("selectedLang");
+	if(selectedLang)	changeLanguage(selectedLang);
 	</script>
 </html>
+<?php
+if(isset($_GET['seance'])){
+	$isEnregistre = getSeance($_GET['seance'])->getAttribute("enregistre");
+	if($isEnregistre == "oui") echo "<script>isEnregistre()</script>";
+}
+$permissions = getUserPerms("student1");
+if($permissions == null  || !in_array("1",$permissions)) echo "<script>document.getElementById('absenceEntry').style.display = 'none'</script>";
+if($permissions == null  || !in_array("2",$permissions)) echo "<script>document.getElementById('listeAbs').style.display = 'none'</script>";
+if($permissions == null  || !in_array("3",$permissions)) echo "<script>document.getElementById('absenceModify').style.display = 'none'</script>";
+if(!isset($_GET['seance'])) echo "<script>document.getElementById('absenceEntry').style.display = 'none'</script>";
+?>
