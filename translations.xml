@@ -3,4 +3,10 @@
 <ar><emploiCa>استعمال الزمن</emploiCa><AbsEntryCa>تسجيل الغياب</AbsEntryCa><listeAbsCa>لائحة الغياب</listeAbsCa><modifyAbsCa>تعديل الغياب</modifyAbsCa></ar>
 <fr><emploiCa>Emploi du temps</emploiCa><AbsEntryCa>Enregistrer les absence</AbsEntryCa><listeAbsCa>Liste des absences</listeAbsCa><modifyAbsCa>Modifier les absence</modifyAbsCa></fr>
 <en><emploiCa>week schedule</emploiCa><AbsEntryCa>Absence Entry</AbsEntryCa><listeAbsCa>Absence List</listeAbsCa><modifyAbsCa>Modify Absence</modifyAbsCa></en>
-</prof></translations>
+</prof>
+<super-user>
+<ar></ar>
+<fr></fr>
+<en></en>
+</super-user>
+</translations>
