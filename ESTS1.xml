@@ -5,7 +5,8 @@
     <role id="1">Professeur</role>
     <role id="2">Coordonnateur</role>
     <role id="3">Chef departement</role>
-    <role id="3">Agents de scholarite</role>
+    <role id="4">Agents de scholarite</role>
+    <role id="5">Admin</role>
   </Roles>
   <!-- /////////////////////////// TABLE Users /////////////////////////////////// -->
   <Users>
@@ -111,12 +112,13 @@
       <Prenom>Abdelouahad</Prenom>
       <id_Roles>3</id_Roles>
     </user>
+    <!-- ////////////////////////////////// ADMIN //////////////////////////////////////////////// -->
     <user>
       <login>admin</login>
       <password>admin</password>
-      <Nom>CHEKRY</Nom>
-      <Prenom>John</Prenom>
-      <id_Roles>3</id_Roles>
+      <Nom>ELKAROUAOUI</Nom>
+      <Prenom>Ali</Prenom>
+      <id_Roles>5</id_Roles>
     </user>
     <user>
       <login>prof777</login>
@@ -131,6 +133,13 @@
       <Nom>DOE</Nom>
       <Prenom>ali</Prenom>
       <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>Profx</login>
+      <password>password12</password>
+      <Nom>John</Nom>
+      <Prenom>Doooe</Prenom>
+      <id_Roles>3</id_Roles>
     </user>
   </Users>
   <!-- /////////////////////////// TABLE Permissions /////////////////////////////////// -->
@@ -197,13 +206,13 @@
   </Etudiants>
   <!-- /////////////////////////// TABLE Seances /////////////////////////////////// -->
   <Seances>
-    <seance id="1" numero="1" jour="1" semaine="1" semestre="1" id_Matieres="1" id_Groupes="1" enregistre="non">
+    <seance id="1" numero="1" jour="1" semaine="1" semestre="1" id_Matieres="1" id_Groupes="1" enregistre="oui">
       <duree>60</duree>
     </seance>
-    <seance id="3" numero="3" jour="6" semaine="1" semestre="2" id_Matieres="2" id_Groupes="2" enregistre="non">
+    <seance id="3" numero="3" jour="6" semaine="1" semestre="2" id_Matieres="2" id_Groupes="2" enregistre="oui">
       <duree>60</duree>
     </seance>
-    <seance id="4" numero="4" jour="6" semaine="1" semestre="2" id_Matieres="1" id_Groupes="2" enregistre="non">
+    <seance id="4" numero="4" jour="6" semaine="1" semestre="2" id_Matieres="1" id_Groupes="2" enregistre="oui">
       <duree>60</duree>
     </seance>
   </Seances>
@@ -269,7 +278,9 @@
   </filieres_niveaux>
   <!-- /////////////////////////// TABLE access /////////////////////////////////// -->
   <access>
-    <user_matiere login_user="prof777" id_Matieres="2"/>
+    <user_matiere login_user="prof7" id_Matieres="2"/>
+    <user_matiere login_user="prof7" id_Matieres="1"/>
+    <user_matiere login_user="prof7" id_Matieres="3"/>
   </access>
   <!-- /////////////////////////// TABLE emplois_filieres /////////////////////////////////// -->
   <emplois_filieres>

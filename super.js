@@ -503,7 +503,7 @@ $("#login-form").submit(function (e) {
 		success: function (response) {
 			if (response === "success") {
 				// login was successful, redirect to protected page
-				window.location.href = "protected.php";
+				window.location.href = "prof.php";
 			} else {
 				// login was unsuccessful, display an error message
 				$("#login-error").html("Invalid username or password").show();

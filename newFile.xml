@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ESTS>
+  <Roles>
+    <role id="1">Administrator</role>
+    <role id="2">Student</role>
+    <role id="3">Teacher</role>
+  </Roles>
+  <Users>
+    <user>
+      <login>teacher1</login>
+      <password>password789</password>
+      <Nom>Bob</Nom>
+      <Prenom>Smith</Prenom>
+      <id_Roles>3</id_Roles>
+    </user>
+    <user>
+      <login>teacher2</login>
+      <password>password789</password>
+      <Nom>jalil</Nom>
+      <Prenom>Smith</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+    <user>
+      <login>student1</login>
+      <password>password789</password>
+      <Nom>jalil</Nom>
+      <Prenom>Smith</Prenom>
+      <id_Roles>1</id_Roles>
+    </user>
+  </Users>
+  <Permissions>
+    <permission id="1">Create Users</permission>
+    <permission id="2">Edit Users</permission>
+    <permission id="3">Delete Users</permission>
+  </Permissions>
+  <Groupes>
+    <groupe id="1" numero="1" id_Filieres="1">
+    </groupe>
+    <groupe id="2" numero="2" id_Filieres="1">
+    </groupe>
+  </Groupes>
+  <Departements>
+    <departement id="1">Computer Science</departement>
+    <departement id="2">Mathematics</departement>
+  </Departements>
+  <Filieres>
+    <filiere id="1" id_Departements="2">
+    <nom>ISIR</nom>
+    </filiere>
+     <filiere id="1" id_Departements="2">
+     <nom>GI</nom>
+    </filiere>
+  </Filieres>
+  <Niveaux>
+    <niveau id="1">Undergraduate</niveau>
+    <niveau id="2">Graduate</niveau>
+  </Niveaux>
+  <Etudiants>
+    <etudiant id="9" id_Groupes="1">
+      <nom>Ahmed</nom>
+    </etudiant>
+    <etudiant id="1" id_Groupes="1">
+      <nom>Alice</nom>
+    </etudiant>
+    <etudiant id="2" id_Groupes="1">
+      <nom>Bob</nom>
+    </etudiant>
+    <etudiant id="3" id_Groupes="2">
+    <nom>Charlie</nom>
+    </etudiant>
+    <etudiant id="4" id_Groupes="2">
+    <nom>Dexter</nom>
+    </etudiant>
+  </Etudiants>
+  
+  <Seances>
+    <seance id="1" numero="1" jour="1" semaine="1" semestre="1" id_Matieres="1" id_Groupes="1" enregistre="oui">
+      <duree>60</duree>
+    </seance>
+    <seance id="3" numero="3" jour="6" semaine="1" semestre="2" id_Matieres="2" id_Groupes="2" enregistre="oui">
+      <duree>60</duree>
+    </seance>
+    <seance id="4" numero="4" jour="6" semaine="1" semestre="2" id_Matieres="1" id_Groupes="2" enregistre="oui">
+      <duree>60</duree>
+    </seance>
+    
+    
+  </Seances>
+  <Matieres>
+    <matiere id="1" id_module="1" id_Filieres="1">
+      <nom>Matiere 1</nom>
+    </matiere>
+    <matiere id="2" id_module="1" id_Filieres="1">
+    <nom>Matiere 2</nom>
+    </matiere>
+     <matiere id="3" id_module="1" id_Filieres="1">
+    <nom>Matiere 3</nom>
+    </matiere>
+  </Matieres>
+  <Semestres>
+    <semestre id="1">
+    </semestre>
+    <semestre id="2">
+    </semestre>
+  </Semestres>
+  <Emploidutemps>
+    <emploidutemps id="1">
+      <id_Semestres>1</id_Semestres>
+    </emploidutemps>
+    <emploidutemps id="2">
+      <id_Semestres>2</id_Semestres>
+    </emploidutemps>
+  </Emploidutemps>
+  <Modules>
+    <module id="1">Introduction to Computer Science</module>
+    <module id="2">Introduction to Calculus</module>
+  </Modules>
+  <roles_permissions>
+    <role_permission id_Permissions="1" id_Roles="1"/>
+    <role_permission id_Permissions="2" id_Roles="1"/>
+    <role_permission id_Permissions="3" id_Roles="1"/>
+    <role_permission id_Permissions="1" id_Roles="3"/>
+  </roles_permissions>
+  <filieres_niveaux>
+    <filiere_niveau id_Filieres="1" id_Niveaux="1"/>
+    <filiere_niveau id_Filieres="2" id_Niveaux="2"/>
+  </filieres_niveaux>
+  <access>
+    <user_matiere login_user="student1" id_Matieres="1"/>
+    <user_matiere login_user="student1" id_Matieres="2"/>
+    <user_matiere login_user="teacher1" id_Matieres="3"/>
+  </access>
+  <emplois_filieres>
+  <emploi_filiere id_filiere=""/>
+  </emplois_filieres>
+  <abscences><abscence id_Etudiants="2" id_Seances="1"/><abscence id_Etudiants="4" id_Seances="4"/><abscence id_Etudiants="4" id_Seances="3"/></abscences>
+</ESTS>
