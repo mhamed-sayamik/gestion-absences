@@ -2,9 +2,8 @@
 <?php
 //load xml database
 session_start();
-//if(!isset($_SESSION['username'])) header("Location: login.php");
-//$username = $_SESSION['username'];
-$username = "student1";
+if(!isset($_SESSION['username'])) header("Location: login.php");
+$username = $_SESSION['username'];
 $path = 'ESTS1.xml';
 $doc = new DOMDocument();
 $doc->load($path);
@@ -496,7 +495,7 @@ if(isset($_GET['seance'])){
 	$isEnregistre = getSeance($_GET['seance'])->getAttribute("enregistre");
 	if($isEnregistre == "oui") echo "<script>isEnregistre()</script>";
 }
-$permissions = getUserPerms("student1");
+$permissions = getUserPerms($user);
 if($permissions == null  || !in_array("1",$permissions)) echo "<script>document.getElementById('absenceEntry').style.display = 'none'</script>";
 if($permissions == null  || !in_array("2",$permissions)) echo "<script>document.getElementById('listeAbs').style.display = 'none'</script>";
 if($permissions == null  || !in_array("3",$permissions)) echo "<script>document.getElementById('absenceModify').style.display = 'none'</script>";
