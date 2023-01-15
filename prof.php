@@ -269,9 +269,9 @@
 		<div class="container1">
 			<div class="nav1">
 				<img src="./Images/est_logo.png" alt="est safi logo" class="logo_est" />
-				<div class="title_nav">Gerer les absences</div>
+				<div class="title_nav" id="title">Gerer les absences</div>
 				<div class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-secondary dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="language">
 					Language
 				</button>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -280,13 +280,15 @@
 					<button id="english" class="dropdown-item" onclick="changeLanguage('en')">English</button>
 				</div>
 				</div>
-				<div class="signup1"><a href="logout.php" class="signupLink">Se déconnecter</a></div>
+				<div class="signup1"><a href="logout.php" class="signupLink" id="logout">Se déconnecter</a></div>
 			</div>
 				
+			
+
 			<div class="container">
 				<form >
 					<div class="form-group">
-						<label for="selectSemaine">Selectionnez la semaine:</label>
+						<label for="selectSemaine" id="semaine">Selectionnez la semaine:</label>
 						<select style="margin-bottom:1em;" class="form-control" name="semaine" id="selectSemaine">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -303,13 +305,13 @@
 						</select>
 						<div class="form-check">
 						<input class="form-check-input" type="radio" name="semestre" id="flexRadioDefault1" value="1">
-						<label class="form-check-label" for="flexRadioDefault1">Semestre 1</label>
+						<label class="form-check-label" for="flexRadioDefault1" id="semestre1">Semestre 1</label>
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="radio" name="semestre" id="flexRadioDefault2" value="2">
-						<label class="form-check-label" for="flexRadioDefault2">Semestre 2</label>
+						<label class="form-check-label" for="flexRadioDefault2" id="semestre2">Semestre 2</label>
 					</div><br>
-					<input type="submit" class="btn btn-info" value="Afficher">
+					<button type="submit" class="btn btn-info" id="afficher">Afficher</button>
 					</div>
 				</form>
 				<table id="emploi" class="emploi table table-hover table-bordered caption-top table-responsive-md">
@@ -327,75 +329,78 @@
 					</thead>
 					<tbody>
 					<?php 
-						echo "<tr>";
-						for($jour=1;$jour<=6;$jour++){
-							$leJour = array("Demanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
-							echo "<td class='table-secondary'>".$leJour[$jour]."</td>";
-							for($numero=1;$numero<=4;$numero++){
-							global $semaine,$semestre;
-							echo "<td id='seance-".$numero."-".$jour."-".$semaine."-".$semestre."'>
-							<button  type='button' style='display:none' class='btn btn-primary'>libre</button>
-						</td>";
-							}
-							echo "<tr>";
-						}
-
-						foreach($seances as $seance){
+					echo "<tr>";
+					for($jour=1;$jour<=6;$jour++){
+						$leJour = array("Demanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+						echo "<td class='table-secondary' id='".$leJour[$jour]."'>".$leJour[$jour]."</td>";
+						for($numero=1;$numero<=4;$numero++){
 						global $semaine,$semestre;
-						$seanceId = $seance->getAttribute("id");
-						$seanceNum = $seance->getAttribute("numero");
-						$seanceJ = $seance->getAttribute("jour");
-						$seanceMatiere = getMatiere($seance->getAttribute("id_Matieres"));
-						$seanceMatiereNom = $seanceMatiere->getElementsByTagname("nom")[0]->nodeValue;
-						echo "<script>displaySeance(".$seanceId.", ".$seanceNum.", ".$seanceJ.",".$semaine.",".$semestre.", "."'$seanceMatiereNom'".")</script>";
+						echo "<td id='seance-".$numero."-".$jour."-".$semaine."-".$semestre."'>
+						<button  type='button' style='display:none' class='btn btn-primary'>libre</button>
+					</td>";
 						}
-					?>
+						echo "<tr>";
+					}
+
+					foreach($seances as $seance){
+					global $semaine,$semestre;
+					$seanceId = $seance->getAttribute("id");
+					$seanceNum = $seance->getAttribute("numero");
+					$seanceJ = $seance->getAttribute("jour");
+					$seanceMatiere = getMatiere($seance->getAttribute("id_Matieres"));
+					$seanceMatiereNom = $seanceMatiere->getElementsByTagname("nom")[0]->nodeValue;
+					echo "<script>displaySeance(".$seanceId.", ".$seanceNum.", ".$seanceJ.",".$semaine.",".$semestre.", "."'$seanceMatiereNom'".")</script>";
+					}
+							?>
 						
 					</tbody>
+				</table><br><br>
+			</div>
+		</div>
+	
+	<form class="absenceEntry" id="absenceEntry" method="POST">
+	<table id="listAbsences"  class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption id="AbsEntryCa">
+						Enregistrer les absence
+					</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th id="nomAbs">Nom</th>
+							<th id="absenceAbs">Absence</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						//if seance already enregistre hide registration form etc
+						
+						if(isset($_GET['seance'])){
+							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
+							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+							$__students = array();
+							foreach($etudiants as $etudiant){
+							if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
+							}
+							foreach ($__students as $etd)
+							{
+								echo "
+								<tr>
+									<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
+								echo "
+									<td>
+										<input type='checkbox' class='form-check-input' name='absenceList[]'  value='". $etd->getAttribute("id")."'/>
+										<label class='form-check-label' for='exampleCheck1'>Absent</label>
+									</td>
+								</tr>";
+								//display each sub element in xml file	
+							}
+						}
+						?>
+						<br><br>
+					</tbody>
 				</table>
-
-				<form class="absenceEntry" id="absenceEntry" method="POST">
-					<table id="listAbsences"  class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-						<caption id="AbsEntryCa">
-							Enregistrer les absence
-						</caption>
-						<thead class="thead-dark">
-							<tr>
-								<th>Nom</th>
-								<th>Absence</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php 
-							//if seance already enregistre hide registration form etc
-							
-								if(isset($_GET['seance'])){
-									$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
-									$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
-									$__students = array();
-									foreach($etudiants as $etudiant){
-										if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
-									}
-									foreach ($__students as $etd){
-										echo "
-										<tr>
-											<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
-										echo "
-											<td>
-												<input type='checkbox' class='form-check-input' name='absenceList[]'  value='". $etd->getAttribute("id")."'/>
-												<label class='form-check-label' for='exampleCheck1'>Absent</label>
-											</td>
-										</tr>";
-										//display each sub element in xml file	
-									}
-								}
-							?>
-							<br><br>
-						</tbody>
-					</table>
-					<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="enregistreAbs" value="Enregistrer">
-				</form>
-				<table id="listeAbs" style="display:none" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+			<button style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="enregistreAbs" id="enregistrerAbs">Enregistrer</button>
+	</form>
+	<table id="listeAbs" style="display:none" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
 					<caption id="listeAbsCa">
 						Liste des absences
 					</caption>
@@ -423,62 +428,62 @@
 						<br><br>
 					</tbody>
 				</table>
-				<form class="absenceModify" style="display:none" id="absenceModify" method="POST">
-					<table id="modifyAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
-						<caption id="modifyAbsCa">
-							Modifier les absence
-						</caption>
-						<thead class="thead-dark">
-							<tr >
-								<th id="el1">Nom</th>
-								<th>Absence</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php 
-							if(isset($_GET['seance'])){
-								$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
-								$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
-								$__students = array();
-								foreach($etudiants as $etudiant){
-								if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
-								}
-								foreach ($__students as $etd)
-								{	
-									echo "
-									<tr>
-										<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
-										global $absences;
-										$is_absent=false;
-										foreach($absences as $abs){
-											if($abs->getAttribute("id") === $etd->getAttribute("id")) $is_absent=true;
-										}
-										if($is_absent) {echo "
-									<td>
-											<input checked type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
-											<label class='form-check-label' for='exampleCheck1'>Absent</label>
-										</td>
-									</tr>";}else{
-										echo "
-									<td>
-											<input type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
-											<label class='form-check-label' for='exampleCheck1'>Absent</label>
-										</td>
-									</tr>";
-									}
+		
 	
-									//display each sub element in xml file	
-								}
+	</form>
+	<form class="absenceModify" style="display:none" id="absenceModify" method="POST">
+	<table id="modifyAbsences" class="listeEt table table-hover caption-top table-bordered table-striped table-responsive-md">
+					<caption id="modifyAbsCa">
+						Modifier les absence
+					</caption>
+					<thead class="thead-dark">
+						<tr >
+							<th id="el1">Nom</th>
+							<th>Absence</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						if(isset($_GET['seance'])){
+							$idGroupe = getSeance($_GET['seance'])->getAttribute("id_Groupes");
+							$etudiants = $doc->getElementsByTagName("Etudiants")[0]->getElementsByTagName("etudiant");
+							$__students = array();
+							foreach($etudiants as $etudiant){
+							if($etudiant->getAttribute("id_Groupes") == $idGroupe) $__students[] = $etudiant;
 							}
-							?>
-							<br><br>
-						</tbody>
-					</table>
-					<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="modifyAbs" value="Modifier">
-				</form>	
-			</div>
-		</div>
-	
+							foreach ($__students as $etd)
+							{	
+								echo "
+								<tr>
+									<td>". $etd->getElementsByTagName("nom")[0]->nodeValue . "</td> ";
+									global $absences;
+									$is_absent=false;
+									foreach($absences as $abs){
+										if($abs->getAttribute("id") === $etd->getAttribute("id")) $is_absent=true;
+									}
+									if($is_absent) {echo "
+								<td>
+										<input checked type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
+										<label class='form-check-label' for='exampleCheck1'>Absent</label>
+									</td>
+								</tr>";}else{
+									echo "
+								<td>
+										<input type='checkbox' class='form-check-input' name='modifyAbsenceList[]'  value='". $etd->getAttribute("id")."'/>
+										<label class='form-check-label' for='exampleCheck1'>Absent</label>
+									</td>
+								</tr>";
+								}
+
+								//display each sub element in xml file	
+							}
+						}
+						?>
+						<br><br>
+					</tbody>
+				</table>
+			<input style="float:right; margin-right:8em;" type="submit" class="btn btn-info" name ="modifyAbs" value="Modifier">
+	</form>	
 	</body>
 	<script >
 	var selectedLang = localStorage.getItem("selectedLang");
