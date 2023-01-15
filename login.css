@@ -1,0 +1,93 @@
+body {
+	font-family: "Lato", sans-serif;
+    display: flex;
+}
+
+/* .main-head {
+	height: 150px;
+	background: #fff;
+} */
+.container{
+    width: 46%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form {
+    width: 55%;
+}
+.sidenav {
+	height: 100vh;
+	background-color: #00000038;
+	/* overflow-x: hidden; */
+	padding-top: 20px;
+	background-image: url(./Images/Bg/ARR.png);
+	background-size: cover;
+	background-blend-mode: overlay;
+	background-repeat: no-repeat;
+    width: 40%;
+}
+
+.main {
+	padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+}
+
+/* @media screen and (max-width: 450px) {
+	.login-form {
+		width: 55%;
+	}
+
+	.register-form {
+		margin-top: 10%;
+	}
+} */
+
+/* @media screen and (min-width: 768px) {
+	.main {
+		margin-left: 40%;
+	}
+
+	.sidenav {
+		width: 40%;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+	}
+
+	.login-form {
+		margin-top: 19% auto;
+	}
+
+	.register-form {
+		margin-top: 20%;
+	}
+} */
+
+.login-main-text {
+	margin-top: 20%;
+	padding: 60px;
+	color: #fff;
+}
+
+.login-main-text h2 {
+	font-weight: 300;
+}
+
+.btn-black {
+	background-color: #000 !important;
+	color: #fff;
+}
+
+.user12 {
+	color: rgb(71, 68, 68);
+	font-size: 6em;
+	text-align: center;
+    display: block;
+}
