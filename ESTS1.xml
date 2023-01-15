@@ -223,15 +223,6 @@
     <semestre id="2">
     </semestre>
   </Semestres>
-  <!-- /////////////////////////// TABLE Emploidutemps /////////////////////////////////// -->
-  <Emploidutemps>
-    <emploidutemps id="1">
-      <id_Semestres>1</id_Semestres>
-    </emploidutemps>
-    <emploidutemps id="2">
-      <id_Semestres>2</id_Semestres>
-    </emploidutemps>
-  </Emploidutemps>
   <!-- /////////////////////////// TABLE Modules /////////////////////////////////// -->
   <Modules>
     <module id="1">Introduction to Computer Science</module>
@@ -257,10 +248,6 @@
     <user_matiere login_user="Prof7" id_Matieres="1"/>
     <user_matiere login_user="Prof7" id_Matieres="3"/>
   </access>
-  <!-- /////////////////////////// TABLE emplois_filieres /////////////////////////////////// -->
-  <emplois_filieres>
-    <emploi_filiere id_filiere=""/>
-  </emplois_filieres>
   <!-- /////////////////////////// TABLE abscences /////////////////////////////////// -->
   <abscences>
     <abscence id_Etudiants="3" id_Seances="2"/>

@@ -178,20 +178,6 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Emploidutemps">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="emploidutemps" maxOccurs="unbounded">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="id_Semestres" type="xs:string" />
-                  </xs:sequence>
-                  <xs:attribute name="id" type="xs:integer" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
         <xs:element name="Modules">
           <xs:complexType>
             <xs:sequence>
@@ -238,17 +224,6 @@
                 <xs:complexType>
                   <xs:attribute name="login_user" use="required" />
                   <xs:attribute name="id_Matieres" type="xs:integer" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="emplois_filieres">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="emploi_filiere">
-                <xs:complexType>
-                  <xs:attribute name="id_filiere" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
