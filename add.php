@@ -68,7 +68,7 @@
       $matiere_id = count($xml->Matieres->matiere) + 1;
 
       $matiere = $xml->Matieres->addChild('matiere');
-      $matiere->addAttribute('id', $matiere_id);
+      $matiere->addAttribute('id', "MA".$matiere_id);
       $matiere->addAttribute('id_module', $module_nom);
       $matiere->addAttribute('id_Filieres', $filiere_nom);
       $matiere->addChild('nom', $mat_nom);
@@ -90,9 +90,6 @@
         $prenom = $_POST['prenom'];
         $pwd = $_POST['pwd'];
         $role_id = $_POST['role'];
-        // $matiere_id = $_POST['checkedValuesMatiere'];
-        // $permission_id1 = $_POST['permission1'];
-
         // create a new user element
         $user = $xml->Users->addChild('user');
         $user->addChild('login', $login);
@@ -100,20 +97,8 @@
         $user->addChild('Nom', $nom);
         $user->addChild('Prenom', $prenom);
         $user->addChild('id_Roles', $role_id);
-
-        // foreach ($matiere_id as $matiere) {
-        //   // if the login of the current user matches the login of the user to delete
-        //   $access_matiere = $xml->access->addChild('user_matiere');
-        //   $access_matiere->addAttribute('login_user', $login);
-        //   $access_matiere->addAttribute('id_Matieres', $matiere);
-        // }
-
-        // if($permission_id1 != ""){
-        //   $permission_role = $xml->roles_permissions->addChild('role_permission');
-        //   $permission_role->addAttribute('id_Permissions', $permission_id1);
-        //   $permission_role->addAttribute('id_Roles', $role_id);
-        // }
-        // save the modified XML file
+        
+       // save the modified XML file
         $xml->asXML('ESTS1.xml');
 
         $dom = new DOMDocument('1.0');

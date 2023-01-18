@@ -27,6 +27,9 @@
         <fr>
             <emploiCa>Emploi du temps</emploiCa>
             <AbsEntryCa>Enregistrer les absence</AbsEntryCa>
+            <nomAbs>Nom</nomAbs>
+            <absenceAbs>Absence</absenceAbs>
+            <enregistrerAbs>Enregister</enregistrerAbs>
             <listeAbsCa>Liste des absences</listeAbsCa>
             <modifyAbsCa>Modifier les absence</modifyAbsCa>
             <title>Gerer les absences</title>
@@ -43,13 +46,13 @@
             <Samedi>Samedi</Samedi>
             <Dimanche>Dimanche</Dimanche>
             <logout>Se déconnecter</logout>
-            <nomAbs>Nom</nomAbs>
-            <absenceAbs>Absence</absenceAbs>
-            <enregistrerAbs>Enregister</enregistrerAbs>
         </fr>
         <en>
             <emploiCa>week schedule</emploiCa>
             <AbsEntryCa>Absence Entry</AbsEntryCa>
+            <nomAbs>Name</nomAbs>
+            <absenceAbs>Absence</absenceAbs>
+            <enregistrerAbs>Save</enregistrerAbs>
             <listeAbsCa>Absence List</listeAbsCa>
             <modifyAbsCa>Modify Absence</modifyAbsCa>
             <title>Manage absences</title>
@@ -66,9 +69,6 @@
             <Samedi>Saturday</Samedi>
             <Dimanche>Sunday</Dimanche>
             <logout>Sign Out</logout>
-            <nomAbs>Name</nomAbs>
-            <absenceAbs>Absence</absenceAbs>
-            <enregistrerAbs>Save</enregistrerAbs>
         </en>
     </prof>
     <super-user>

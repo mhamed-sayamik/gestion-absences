@@ -478,7 +478,7 @@
 							foreach ($xml_data->Users->user as $data)
 							{
 								// echo $data->nom. "<br>";
-								if($data->id_Roles == "1"){
+								if((string)$data->id_Roles == "1"){
 									echo "
 									<tr>
 										<td>". $data->login . "</td> ";
@@ -643,13 +643,13 @@
 										<td>". $matiere->nom . "</td> ";
 										
 										foreach ($xml_data->Modules->module as $module){
-											if((int)$module['id'] == (int)$matiere['id_module']){
+											if((string)$module['id'] == (string)$matiere['id_module']){
 												echo "<td>". $module . "</td> ";
 												break;
 											}
 										}
 										foreach ($xml_data->Filieres->filiere as $filiere){
-											if((int)$filiere['id'] == (int)$matiere['id_Filieres']){
+											if((string)$filiere['id'] == (string)$matiere['id_Filieres']){
 												echo "<td>". $filiere->nom . "</td> ";
 												break;
 											}
@@ -688,7 +688,7 @@
 									<tr> 
 										<td>". $user_matiere['login_user'] . "</td> ";
 									foreach ($xml_data->Matieres->matiere as $matiere){
-										if((int)$matiere['id'] == (int)$user_matiere['id_Matieres']){
+										if((string)$matiere['id'] == (string)$user_matiere['id_Matieres']){
 											echo "<td>". $matiere->nom . "</td> ";
 											break;
 										}
@@ -759,14 +759,14 @@
 									<tr>";
 
 									foreach ($xml_data->Roles->role as $role){
-										if((int)$role['id'] == (int)$role_permission['id_Roles']){
+										if((string)$role['id'] == (string)$role_permission['id_Roles']){
 											echo "<td>". $role . "</td> ";
 											break;
 										}
 									}
 
 									foreach ($xml_data->Permissions->permission as $permission){
-										if((int)$permission['id'] == (int)$role_permission['id_Permissions']){
+										if((string)$permission['id'] == (string)$role_permission['id_Permissions']){
 											echo "<td>". $permission->nom . "</td> ";
 											break;
 										}

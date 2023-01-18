@@ -165,9 +165,9 @@ $(".permission_span").click(function matiere_click() {
 $(document).ready(function () {
 	$(".deleteBtn").click(function () {
 		// get the login of the user being deleted
-		console.log("11");
+		// console.log("11");
 		var login = $(this).data("login");
-		console.log(login);
+		// console.log(login);
 
 		// send the login to the server using ajax
 		$.ajax({
@@ -184,9 +184,9 @@ $(document).ready(function () {
 $(document).ready(function () {
 	$(".deleteBtn1").click(function () {
 		// get the login of the user being deleted
-		console.log("11");
+		// console.log("11");
 		var matiere_user = $(this).data("login");
-		console.log(matiere_user);
+		// console.log(matiere_user);
 
 		// send the login to the server using ajax
 		$.ajax({
@@ -203,9 +203,9 @@ $(document).ready(function () {
 $(document).ready(function () {
 	$(".deleteBtn2").click(function () {
 		// get the login of the user being deleted
-		console.log("11");
+		// console.log("11");
 		var matiere_id = $(this).data("login");
-		console.log(matiere_id);
+		// console.log(matiere_id);
 
 		// send the login to the server using ajax
 		$.ajax({
@@ -221,9 +221,9 @@ $(document).ready(function () {
 $(document).ready(function () {
 	$(".deleteBtn3").click(function () {
 		// get the login of the user being deleted
-		console.log("11");
+		// console.log("11");
 		var permission_id = $(this).data("login");
-		console.log(permission_id);
+		// console.log(permission_id);
 
 		// send the login to the server using ajax
 		$.ajax({
@@ -238,9 +238,9 @@ $(document).ready(function () {
 $(document).ready(function () {
 	$(".deleteBtn4").click(function () {
 		// get the login of the user being deleted
-		console.log("11");
+		// console.log("11");
 		var permission_role_id = $(this).data("login");
-		console.log(permission_role_id);
+		// console.log(permission_role_id);
 
 		// send the login to the server using ajax
 		$.ajax({
@@ -255,9 +255,9 @@ $(document).ready(function () {
 // ----------------------------------------- handle edit button click
 $(document).ready(function () {
 	$(".editBtn").click(function () {
-		console.log("22");
+		// console.log("22");
 		var login = $(this).data("login");
-		console.log(login);
+		// console.log(login);
 		$("#login_edit").val(login);
 	});
 });
@@ -266,11 +266,11 @@ $("#edit-form").submit(function (e) {
 	// prevent the form from being submitted
 	e.preventDefault();
 
-	console.log("submittt");
+	// console.log("submittt");
 	var login = $("#login").val();
 	// get the form data
 	var formDataObj = new FormData(document.getElementById("edit-form"));
-	console.log(formDataObj);
+	// console.log(formDataObj);
 	// send the form data to the server using ajax
 	$.ajax({
 		type: "POST",
@@ -300,11 +300,11 @@ $(".editBtn2").click(function (e) {
 		// prevent the form from being submitted
 		e.preventDefault();
 
-		console.log("submittt");
+		// console.log("submittt");
 		// get the form data
 		// var matiere_id = $(this).data("login");
 		// var matiere_id = $(".editBtn2").data("login");
-		console.log(matiere_id);
+		// console.log(matiere_id);
 		var mat_nom_edit = $("#mat_nom_edit").val();
 		var module_nom_edit = $("#module_nom_edit").val();
 		var filiere_nom_edit = $("#filiere_nom_edit").val();
@@ -332,8 +332,8 @@ $(".editBtn3").click(function (e) {
 		// prevent the form from being submitted
 		e.preventDefault();
 
-		console.log("submittt");
-		console.log(perm_id_edit);
+		// console.log("submittt");
+		// console.log(perm_id_edit);
 		var perm_nom_edit = $("#perm_nom_edit").val();
 		// send the form data to the server using ajax
 		$.ajax({
@@ -357,7 +357,7 @@ $("#add-form").submit(function (e) {
 	// prevent the form from being submitted
 	e.preventDefault();
 
-	console.log("submittt");
+	// console.log("submittt");
 	// var checkboxes = document.querySelectorAll('#add-form input[type="checkbox"]');
 
 	// // Create an array of the checked values
@@ -399,7 +399,7 @@ $("#add-mat-form").submit(function (e) {
 	// prevent the form from being submitted
 	e.preventDefault();
 
-	console.log("submittt");
+	// console.log("submittt");
 	var formDataObj = new FormData(document.getElementById("add-mat-form"));
 	// console.log(formDataObj);
 	// send the form data to the server using ajax
@@ -423,7 +423,7 @@ $("#add_access_form").submit(function (e) {
 	// prevent the form from being submitted
 	e.preventDefault();
 
-	console.log("submittt");
+	// console.log("submittt");
 	var formDataObj = new FormData(document.getElementById("add_access_form"));
 	// console.log(formDataObj);
 	// send the form data to the server using ajax
@@ -445,7 +445,7 @@ $("#add_permission_form").submit(function (e) {
 	// prevent the form from being submitted
 	e.preventDefault();
 
-	console.log("submittt");
+	// console.log("submittt");
 	var formDataObj = new FormData(document.getElementById("add_permission_form"));
 	// console.log(formDataObj);
 	// send the form data to the server using ajax
@@ -467,7 +467,7 @@ $("#add_perm_role_form").submit(function (e) {
 	// prevent the form from being submitted
 	e.preventDefault();
 
-	console.log("submittt");
+	// console.log("submittt");
 	var formDataObj = new FormData(document.getElementById("add_perm_role_form"));
 	// console.log(formDataObj);
 	// send the form data to the server using ajax

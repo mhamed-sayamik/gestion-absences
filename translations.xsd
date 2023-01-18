@@ -6,86 +6,11 @@
                 <xs:element name="prof">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="ar">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="emploiCa" type="xs:string" />
-                                        <xs:element name="AbsEntryCa" type="xs:string" />
-                                        <xs:element name="nomAbs" type="xs:string" />
-                                        <xs:element name="absenceAbs" type="xs:string" />
-                                        <xs:element name="enregistrerAbs" type="xs:string" />
-                                        <xs:element name="listeAbsCa" type="xs:string" />
-                                        <xs:element name="modifyAbsCa" type="xs:string" />
-                                        <xs:element name="title" type="xs:string" />
-                                        <xs:element name="semaine" type="xs:string" />
-                                        <xs:element name="semestre1" type="xs:string" />
-                                        <xs:element name="semestre2" type="xs:string" />
-                                        <xs:element name="afficher" type="xs:string" />
-                                        <xs:element name="language" type="xs:string" />
-                                        <xs:element name="Lundi" type="xs:string" />
-                                        <xs:element name="Mardi" type="xs:string" />
-                                        <xs:element name="Mercredi" type="xs:string" />
-                                        <xs:element name="Jeudi" type="xs:string" />
-                                        <xs:element name="Vendredi" type="xs:string" />
-                                        <xs:element name="Samedi" type="xs:string" />
-                                        <xs:element name="Dimanche" type="xs:string" />
-                                        <xs:element name="logout" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="ar" type="profType">
                             </xs:element>
-                            <xs:element name="fr">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="emploiCa" type="xs:string" />
-                                        <xs:element name="AbsEntryCa" type="xs:string" />
-                                        <xs:element name="listeAbsCa" type="xs:string" />
-                                        <xs:element name="modifyAbsCa" type="xs:string" />
-                                        <xs:element name="title" type="xs:string" />
-                                        <xs:element name="semaine" type="xs:string" />
-                                        <xs:element name="semestre1" type="xs:string" />
-                                        <xs:element name="semestre2" type="xs:string" />
-                                        <xs:element name="afficher" type="xs:string" />
-                                        <xs:element name="language" type="xs:string" />
-                                        <xs:element name="Lundi" type="xs:string" />
-                                        <xs:element name="Mardi" type="xs:string" />
-                                        <xs:element name="Mercredi" type="xs:string" />
-                                        <xs:element name="Jeudi" type="xs:string" />
-                                        <xs:element name="Vendredi" type="xs:string" />
-                                        <xs:element name="Samedi" type="xs:string" />
-                                        <xs:element name="Dimanche" type="xs:string" />
-                                        <xs:element name="logout" type="xs:string" />
-                                        <xs:element name="nomAbs" type="xs:string" />
-                                        <xs:element name="absenceAbs" type="xs:string" />
-                                        <xs:element name="enregistrerAbs" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="fr" type="profType">
                             </xs:element>
-                            <xs:element name="en">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="emploiCa" type="xs:string" />
-                                        <xs:element name="AbsEntryCa" type="xs:string" />
-                                        <xs:element name="listeAbsCa" type="xs:string" />
-                                        <xs:element name="modifyAbsCa" type="xs:string" />
-                                        <xs:element name="title" type="xs:string" />
-                                        <xs:element name="semaine" type="xs:string" />
-                                        <xs:element name="semestre1" type="xs:string" />
-                                        <xs:element name="semestre2" type="xs:string" />
-                                        <xs:element name="afficher" type="xs:string" />
-                                        <xs:element name="language" type="xs:string" />
-                                        <xs:element name="Lundi" type="xs:string" />
-                                        <xs:element name="Mardi" type="xs:string" />
-                                        <xs:element name="Mercredi" type="xs:string" />
-                                        <xs:element name="Jeudi" type="xs:string" />
-                                        <xs:element name="Vendredi" type="xs:string" />
-                                        <xs:element name="Samedi" type="xs:string" />
-                                        <xs:element name="Dimanche" type="xs:string" />
-                                        <xs:element name="logout" type="xs:string" />
-                                        <xs:element name="nomAbs" type="xs:string" />
-                                        <xs:element name="absenceAbs" type="xs:string" />
-                                        <xs:element name="enregistrerAbs" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="en" type="profType">
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
@@ -93,167 +18,11 @@
                 <xs:element name="super-user">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="ar">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="titlenav" type="xs:string" />
-                                        <xs:element name="language" type="xs:string" />
-                                        <xs:element name="logout" type="xs:string" />
-                                        <xs:element name="ajouterUser" type="xs:string" />
-                                        <xs:element name="listProf" type="xs:string" />
-                                        <xs:element name="loginProf" type="xs:string" />
-                                        <xs:element name="nomProf" type="xs:string" />
-                                        <xs:element name="prenomProf" type="xs:string" />
-                                        <xs:element name="motDePasseProf" type="xs:string" />
-                                        <xs:element name="actionsProf" type="xs:string" />
-                                        <xs:element name="listCor" type="xs:string" />
-                                        <xs:element name="loginCor" type="xs:string" />
-                                        <xs:element name="nomCor" type="xs:string" />
-                                        <xs:element name="prenomCor" type="xs:string" />
-                                        <xs:element name="motDePasseCor" type="xs:string" />
-                                        <xs:element name="actionsCor" type="xs:string" />
-                                        <xs:element name="listChef" type="xs:string" />
-                                        <xs:element name="loginChef" type="xs:string" />
-                                        <xs:element name="nomChef" type="xs:string" />
-                                        <xs:element name="prenomChef" type="xs:string" />
-                                        <xs:element name="motDePasseChef" type="xs:string" />
-                                        <xs:element name="actionsChef" type="xs:string" />
-                                        <xs:element name="listAg" type="xs:string" />
-                                        <xs:element name="loginAg" type="xs:string" />
-                                        <xs:element name="nomAg" type="xs:string" />
-                                        <xs:element name="prenomAg" type="xs:string" />
-                                        <xs:element name="motDePasseAg" type="xs:string" />
-                                        <xs:element name="actionsAg" type="xs:string" />
-                                        <xs:element name="ajouterMat" type="xs:string" />
-                                        <xs:element name="listMat" type="xs:string" />
-                                        <xs:element name="matiereMat" type="xs:string" />
-                                        <xs:element name="moduleMat" type="xs:string" />
-                                        <xs:element name="filiereMat" type="xs:string" />
-                                        <xs:element name="actionsMat" type="xs:string" />
-                                        <xs:element name="ajouterAcc" type="xs:string" />
-                                        <xs:element name="listAcc" type="xs:string" />
-                                        <xs:element name="matiereAcc" type="xs:string" />
-                                        <xs:element name="utilisateurAcc" type="xs:string" />
-                                        <xs:element name="actionsAcc" type="xs:string" />
-                                        <xs:element name="ajouterPer" type="xs:string" />
-                                        <xs:element name="listPer" type="xs:string" />
-                                        <xs:element name="permission" type="xs:string" />
-                                        <xs:element name="actionsPer" type="xs:string" />
-                                        <xs:element name="ajouterPerRole" type="xs:string" />
-                                        <xs:element name="listPerRole" type="xs:string" />
-                                        <xs:element name="rolePer" type="xs:string" />
-                                        <xs:element name="permissionRole" type="xs:string" />
-                                        <xs:element name="actionsPerRole" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="ar" type="superUserType">
                             </xs:element>
-                            <xs:element name="fr">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="titlenav" type="xs:string" />
-                                        <xs:element name="language" type="xs:string" />
-                                        <xs:element name="logout" type="xs:string" />
-                                        <xs:element name="ajouterUser" type="xs:string" />
-                                        <xs:element name="listProf" type="xs:string" />
-                                        <xs:element name="loginProf" type="xs:string" />
-                                        <xs:element name="nomProf" type="xs:string" />
-                                        <xs:element name="prenomProf" type="xs:string" />
-                                        <xs:element name="motDePasseProf" type="xs:string" />
-                                        <xs:element name="actionsProf" type="xs:string" />
-                                        <xs:element name="listCor" type="xs:string" />
-                                        <xs:element name="loginCor" type="xs:string" />
-                                        <xs:element name="nomCor" type="xs:string" />
-                                        <xs:element name="prenomCor" type="xs:string" />
-                                        <xs:element name="motDePasseCor" type="xs:string" />
-                                        <xs:element name="actionsCor" type="xs:string" />
-                                        <xs:element name="listChef" type="xs:string" />
-                                        <xs:element name="loginChef" type="xs:string" />
-                                        <xs:element name="nomChef" type="xs:string" />
-                                        <xs:element name="prenomChef" type="xs:string" />
-                                        <xs:element name="motDePasseChef" type="xs:string" />
-                                        <xs:element name="actionsChef" type="xs:string" />
-                                        <xs:element name="listAg" type="xs:string" />
-                                        <xs:element name="loginAg" type="xs:string" />
-                                        <xs:element name="nomAg" type="xs:string" />
-                                        <xs:element name="prenomAg" type="xs:string" />
-                                        <xs:element name="motDePasseAg" type="xs:string" />
-                                        <xs:element name="actionsAg" type="xs:string" />
-                                        <xs:element name="ajouterMat" type="xs:string" />
-                                        <xs:element name="listMat" type="xs:string" />
-                                        <xs:element name="matiereMat" type="xs:string" />
-                                        <xs:element name="moduleMat" type="xs:string" />
-                                        <xs:element name="filiereMat" type="xs:string" />
-                                        <xs:element name="actionsMat" type="xs:string" />
-                                        <xs:element name="ajouterAcc" type="xs:string" />
-                                        <xs:element name="listAcc" type="xs:string" />
-                                        <xs:element name="matiereAcc" type="xs:string" />
-                                        <xs:element name="utilisateurAcc" type="xs:string" />
-                                        <xs:element name="actionsAcc" type="xs:string" />
-                                        <xs:element name="ajouterPer" type="xs:string" />
-                                        <xs:element name="listPer" type="xs:string" />
-                                        <xs:element name="permission" type="xs:string" />
-                                        <xs:element name="actionsPer" type="xs:string" />
-                                        <xs:element name="ajouterPerRole" type="xs:string" />
-                                        <xs:element name="listPerRole" type="xs:string" />
-                                        <xs:element name="rolePer" type="xs:string" />
-                                        <xs:element name="permissionRole" type="xs:string" />
-                                        <xs:element name="actionsPerRole" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="fr" type="superUserType">
                             </xs:element>
-                            <xs:element name="en">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="titlenav" type="xs:string" />
-                                        <xs:element name="language" type="xs:string" />
-                                        <xs:element name="logout" type="xs:string" />
-                                        <xs:element name="ajouterUser" type="xs:string" />
-                                        <xs:element name="listProf" type="xs:string" />
-                                        <xs:element name="loginProf" type="xs:string" />
-                                        <xs:element name="nomProf" type="xs:string" />
-                                        <xs:element name="prenomProf" type="xs:string" />
-                                        <xs:element name="motDePasseProf" type="xs:string" />
-                                        <xs:element name="actionsProf" type="xs:string" />
-                                        <xs:element name="listCor" type="xs:string" />
-                                        <xs:element name="loginCor" type="xs:string" />
-                                        <xs:element name="nomCor" type="xs:string" />
-                                        <xs:element name="prenomCor" type="xs:string" />
-                                        <xs:element name="motDePasseCor" type="xs:string" />
-                                        <xs:element name="actionsCor" type="xs:string" />
-                                        <xs:element name="listChef" type="xs:string" />
-                                        <xs:element name="loginChef" type="xs:string" />
-                                        <xs:element name="nomChef" type="xs:string" />
-                                        <xs:element name="prenomChef" type="xs:string" />
-                                        <xs:element name="motDePasseChef" type="xs:string" />
-                                        <xs:element name="actionsChef" type="xs:string" />
-                                        <xs:element name="listAg" type="xs:string" />
-                                        <xs:element name="loginAg" type="xs:string" />
-                                        <xs:element name="nomAg" type="xs:string" />
-                                        <xs:element name="prenomAg" type="xs:string" />
-                                        <xs:element name="motDePasseAg" type="xs:string" />
-                                        <xs:element name="actionsAg" type="xs:string" />
-                                        <xs:element name="ajouterMat" type="xs:string" />
-                                        <xs:element name="listMat" type="xs:string" />
-                                        <xs:element name="matiereMat" type="xs:string" />
-                                        <xs:element name="moduleMat" type="xs:string" />
-                                        <xs:element name="filiereMat" type="xs:string" />
-                                        <xs:element name="actionsMat" type="xs:string" />
-                                        <xs:element name="ajouterAcc" type="xs:string" />
-                                        <xs:element name="listAcc" type="xs:string" />
-                                        <xs:element name="matiereAcc" type="xs:string" />
-                                        <xs:element name="utilisateurAcc" type="xs:string" />
-                                        <xs:element name="actionsAcc" type="xs:string" />
-                                        <xs:element name="ajouterPer" type="xs:string" />
-                                        <xs:element name="listPer" type="xs:string" />
-                                        <xs:element name="permission" type="xs:string" />
-                                        <xs:element name="actionsPer" type="xs:string" />
-                                        <xs:element name="ajouterPerRole" type="xs:string" />
-                                        <xs:element name="listPerRole" type="xs:string" />
-                                        <xs:element name="rolePer" type="xs:string" />
-                                        <xs:element name="permissionRole" type="xs:string" />
-                                        <xs:element name="actionsPerRole" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="en" type="superUserType">
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
@@ -261,4 +30,85 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <!-- ////////////////////// PROF TYPE GLOBAL /////////////////////// -->
+    <xs:complexType name="profType">
+        <xs:sequence>
+            <xs:element name="emploiCa" type="xs:string" />
+            <xs:element name="AbsEntryCa" type="xs:string" />
+            <xs:element name="nomAbs" type="xs:string" />
+            <xs:element name="absenceAbs" type="xs:string" />
+            <xs:element name="enregistrerAbs" type="xs:string" />
+            <xs:element name="listeAbsCa" type="xs:string" />
+            <xs:element name="modifyAbsCa" type="xs:string" />
+            <xs:element name="title" type="xs:string" />
+            <xs:element name="semaine" type="xs:string" />
+            <xs:element name="semestre1" type="xs:string" />
+            <xs:element name="semestre2" type="xs:string" />
+            <xs:element name="afficher" type="xs:string" />
+            <xs:element name="language" type="xs:string" />
+            <xs:element name="Lundi" type="xs:string" />
+            <xs:element name="Mardi" type="xs:string" />
+            <xs:element name="Mercredi" type="xs:string" />
+            <xs:element name="Jeudi" type="xs:string" />
+            <xs:element name="Vendredi" type="xs:string" />
+            <xs:element name="Samedi" type="xs:string" />
+            <xs:element name="Dimanche" type="xs:string" />
+            <xs:element name="logout" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// SUPER USER TYPE GLOBAL /////////////////////// -->
+    <xs:complexType name="superUserType">
+        <xs:sequence>
+            <xs:element name="titlenav" type="xs:string" />
+            <xs:element name="language" type="xs:string" />
+            <xs:element name="logout" type="xs:string" />
+            <xs:element name="ajouterUser" type="xs:string" />
+            <xs:element name="listProf" type="xs:string" />
+            <xs:element name="loginProf" type="xs:string" />
+            <xs:element name="nomProf" type="xs:string" />
+            <xs:element name="prenomProf" type="xs:string" />
+            <xs:element name="motDePasseProf" type="xs:string" />
+            <xs:element name="actionsProf" type="xs:string" />
+            <xs:element name="listCor" type="xs:string" />
+            <xs:element name="loginCor" type="xs:string" />
+            <xs:element name="nomCor" type="xs:string" />
+            <xs:element name="prenomCor" type="xs:string" />
+            <xs:element name="motDePasseCor" type="xs:string" />
+            <xs:element name="actionsCor" type="xs:string" />
+            <xs:element name="listChef" type="xs:string" />
+            <xs:element name="loginChef" type="xs:string" />
+            <xs:element name="nomChef" type="xs:string" />
+            <xs:element name="prenomChef" type="xs:string" />
+            <xs:element name="motDePasseChef" type="xs:string" />
+            <xs:element name="actionsChef" type="xs:string" />
+            <xs:element name="listAg" type="xs:string" />
+            <xs:element name="loginAg" type="xs:string" />
+            <xs:element name="nomAg" type="xs:string" />
+            <xs:element name="prenomAg" type="xs:string" />
+            <xs:element name="motDePasseAg" type="xs:string" />
+            <xs:element name="actionsAg" type="xs:string" />
+            <xs:element name="ajouterMat" type="xs:string" />
+            <xs:element name="listMat" type="xs:string" />
+            <xs:element name="matiereMat" type="xs:string" />
+            <xs:element name="moduleMat" type="xs:string" />
+            <xs:element name="filiereMat" type="xs:string" />
+            <xs:element name="actionsMat" type="xs:string" />
+            <xs:element name="ajouterAcc" type="xs:string" />
+            <xs:element name="listAcc" type="xs:string" />
+            <xs:element name="matiereAcc" type="xs:string" />
+            <xs:element name="utilisateurAcc" type="xs:string" />
+            <xs:element name="actionsAcc" type="xs:string" />
+            <xs:element name="ajouterPer" type="xs:string" />
+            <xs:element name="listPer" type="xs:string" />
+            <xs:element name="permission" type="xs:string" />
+            <xs:element name="actionsPer" type="xs:string" />
+            <xs:element name="ajouterPerRole" type="xs:string" />
+            <xs:element name="listPerRole" type="xs:string" />
+            <xs:element name="rolePer" type="xs:string" />
+            <xs:element name="permissionRole" type="xs:string" />
+            <xs:element name="actionsPerRole" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>

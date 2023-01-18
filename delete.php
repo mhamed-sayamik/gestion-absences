@@ -7,7 +7,7 @@
         
         foreach ($xml->roles_permissions->role_permission as $role_permission) {
             // if the login of the current user matches the login of the user to delete
-                if ((int)$role_permission['id_Permissions'] == (int)$id_Permissions && (int)$role_permission['id_Roles'] == (int)$id_Roles) {
+                if ((string)$role_permission['id_Permissions'] == (string)$id_Permissions && (string)$role_permission['id_Roles'] == (string)$id_Roles) {
                     // remove the user from the XML file
                     unset($role_permission[0]);
                     break;
@@ -27,7 +27,7 @@
         $permission_id = $_POST['permission_id'];
         foreach ($xml->Permissions->permission as $permission) {
         // if the login of the current user matches the login of the user to delete
-            if ((int)$permission['id'] == (int)$permission_id) {
+            if ((string)$permission['id'] == (string)$permission_id) {
                 // remove the user from the XML file
                 unset($permission[0]);
                 $xml->asXML('./ESTS1.xml');
@@ -51,11 +51,12 @@
         $dom->save('ESTS1.xml');
     }
 
+    // ----------------------------------------- DELETE MATIERE and USER_MATIERE---------------------------------------------------
     if(isset($_POST["matiere_id"])){
         $matiere_id = $_POST['matiere_id'];
         foreach ($xml->Matieres->matiere as $matiere) {
         // if the login of the current user matches the login of the user to delete
-            if ((int)$matiere['id'] == (int)$matiere_id) {
+            if ((string)$matiere['id'] == (string)$matiere_id) {
                 // remove the user from the XML file
                 unset($matiere[0]);
                 break;
@@ -63,7 +64,7 @@
         }
         foreach ($xml->access->user_matiere as $user_matiere) {
             // if the login of the current user matches the login of the user to delete
-                if ((int)$user_matiere['id_Matieres'] == (int)$matiere_id) {
+                if ((string)$user_matiere['id_Matieres'] == (string)$matiere_id) {
                     // remove the user from the XML file
                     unset($user_matiere[0]);
                     break;
@@ -80,11 +81,12 @@
     }
 
 
+    // ----------------------------------------- DELETE USER_MATIERE---------------------------------------------------
     if(isset($_POST["matiere_user"])){
         $matiere_post = $_POST['matiere_user'];
         foreach ($xml->access->user_matiere as $user_matiere) {
         // if the login of the current user matches the login of the user to delete
-            if ((int)$user_matiere['id_Matieres'] == (int)$matiere_post) {
+            if ((string)$user_matiere['id_Matieres'] == (string)$matiere_post) {
                 // remove the user from the XML file
                 unset($user_matiere[0]);
                 break;
@@ -100,8 +102,7 @@
         $dom->save('ESTS1.xml');
     }
 
-
-
+    // ----------------------------------------- DELETE USER AND USER_MATIERE---------------------------------------------------
     if(isset($_POST["login"])){
 
         $login = $_POST['login'];
@@ -119,7 +120,7 @@
 
         foreach ($xml->access->user_matiere as $matiere) {
         // if the login of the current user matches the login of the user to delete
-            if ((int)$matiere['login_user'] == (int)$login) {
+            if ((string)$matiere['login_user'] == (string)$login) {
                 // remove the user from the XML file
                 unset($matiere[0]);
                 // break;
