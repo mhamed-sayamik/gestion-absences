@@ -52,7 +52,7 @@
                         <xs:element name="password" type="xs:string"></xs:element>
                         <xs:element name="Nom" type="xs:string"></xs:element>
                         <xs:element name="Prenom" type="xs:string"></xs:element>
-                        <xs:element name="id_Roles" type="xs:integer"></xs:element>
+                        <xs:element name="id_Roles" type="xs:IDREF"></xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

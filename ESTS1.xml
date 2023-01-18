@@ -16,21 +16,21 @@
       <password>admin</password>
       <Nom>BAYAR</Nom>
       <Prenom>Abdelouahad</Prenom>
-      <id_Roles>1</id_Roles>
+      <id_Roles>R1</id_Roles>
     </user>
     <user>
       <login>Prof9</login>
       <password>password789</password>
       <Nom>Bob</Nom>
       <Prenom>Smith</Prenom>
-      <id_Roles>1</id_Roles>
+      <id_Roles>R1</id_Roles>
     </user>
     <user>
       <login>Prof10</login>
       <password>password789</password>
       <Nom>Bob</Nom>
       <Prenom>Smith</Prenom>
-      <id_Roles>1</id_Roles>
+      <id_Roles>R1</id_Roles>
     </user>
     <!-- ////////////////////////// Coordonnateurs ///////////////////////////////// -->
     <user>
@@ -38,21 +38,21 @@
       <password>admin</password>
       <Nom>DOE</Nom>
       <Prenom>ABDERRAHMANE</Prenom>
-      <id_Roles>2</id_Roles>
+      <id_Roles>R2</id_Roles>
     </user>
     <user>
       <login>Coordonnateur2</login>
       <password>pwd1234</password>
       <Nom>jalil</Nom>
       <Prenom>Smith</Prenom>
-      <id_Roles>2</id_Roles>
+      <id_Roles>R2</id_Roles>
     </user>
     <user>
       <login>Coordonnateur3</login>
       <password>pwd12345</password>
       <Nom>jalil</Nom>
       <Prenom>Smith</Prenom>
-      <id_Roles>2</id_Roles>
+      <id_Roles>R2</id_Roles>
     </user>
     <!-- ////////////////////////// Chef departements ///////////////////////////////// -->
     <user>
@@ -60,7 +60,7 @@
       <password>pwd1234</password>
       <Nom>jalil</Nom>
       <Prenom>Smith</Prenom>
-      <id_Roles>3</id_Roles>
+      <id_Roles>R3</id_Roles>
     </user>
     <!-- ////////////////////////// Agents de scholarite ///////////////////////////////// -->
     <user>
@@ -68,35 +68,35 @@
       <password>pwd123</password>
       <Nom>John</Nom>
       <Prenom>Doe</Prenom>
-      <id_Roles>4</id_Roles>
+      <id_Roles>R4</id_Roles>
     </user>
     <user>
       <login>Agent_scholarite3</login>
       <password>pwd12345</password>
       <Nom>jalil</Nom>
       <Prenom>Smith</Prenom>
-      <id_Roles>4</id_Roles>
+      <id_Roles>R4</id_Roles>
     </user>
     <user>
       <login>prof22</login>
       <password>134</password>
       <Nom>DOE</Nom>
       <Prenom>JOHN</Prenom>
-      <id_Roles>1</id_Roles>
+      <id_Roles>R1</id_Roles>
     </user>
     <user>
       <login>Prof11</login>
       <password>pwd@1890-</password>
       <Nom>DOE1</Nom>
       <Prenom>ABDERRAHMANE</Prenom>
-      <id_Roles>1</id_Roles>
+      <id_Roles>R1</id_Roles>
     </user>
     <user>
       <login>ChefDept3</login>
       <password>pwd0865_oi</password>
       <Nom>DOE1</Nom>
       <Prenom>Abdelouahad</Prenom>
-      <id_Roles>3</id_Roles>
+      <id_Roles>R3</id_Roles>
     </user>
     <!-- ////////////////////////////////// ADMIN //////////////////////////////////////////////// -->
     <user>
@@ -104,14 +104,14 @@
       <password>admin</password>
       <Nom>ELKAROUAOUI</Nom>
       <Prenom>Ali</Prenom>
-      <id_Roles>5</id_Roles>
+      <id_Roles>R5</id_Roles>
     </user>
     <user>
       <login>prof215</login>
       <password>qwtdt43</password>
       <Nom>DOE</Nom>
       <Prenom>ali</Prenom>
-      <id_Roles>1</id_Roles>
+      <id_Roles>R1</id_Roles>
     </user>
   </Users>
   <!-- /////////////////////////// TABLE Permissions /////////////////////////////////// -->
@@ -179,13 +179,13 @@
     <seance id="S1" numero="1" jour="1" semaine="1" semestre="1" id_Matieres="MA1" id_Groupes="G1" enregistre="oui">
       <duree>60</duree>
     </seance>
-    <seance id="S2" numero="2" jour="1" semaine="1" semestre="1" id_Matieres="MA1" id_Groupes="G1" enregistre="oui">
+    <seance id="S2" numero="2" jour="1" semaine="1" semestre="1" id_Matieres="MA3" id_Groupes="G1" enregistre="oui">
       <duree>60</duree>
     </seance>
     <seance id="S3" numero="3" jour="6" semaine="1" semestre="2" id_Matieres="MA2" id_Groupes="G2" enregistre="oui">
       <duree>60</duree>
     </seance>
-    <seance id="S4" numero="4" jour="6" semaine="1" semestre="2" id_Matieres="MA1" id_Groupes="G2" enregistre="oui">
+    <seance id="S4" numero="4" jour="6" semaine="1" semestre="2" id_Matieres="MA4" id_Groupes="G2" enregistre="oui">
       <duree>60</duree>
     </seance>
   </Seances>

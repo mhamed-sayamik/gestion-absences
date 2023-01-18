@@ -352,7 +352,6 @@
 					echo "<script>displaySeance(".$seanceId.", ".$seanceNum.", ".$seanceJ.",".$semaine.",".$semestre.", "."'$seanceMatiereNom'".")</script>";
 					}
 							?>
-						
 					</tbody>
 				</table>
 				<form class="absenceEntry" id="absenceEntry" method="POST">
