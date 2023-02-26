@@ -1,12 +1,226 @@
-<translations>
-<prof>
-<ar><emploiCa>استعمال الزمن</emploiCa><AbsEntryCa>تسجيل الغياب</AbsEntryCa><listeAbsCa>لائحة الغياب</listeAbsCa><modifyAbsCa>تعديل الغياب</modifyAbsCa></ar>
-<fr><emploiCa>Emploi du temps</emploiCa><AbsEntryCa>Enregistrer les absence</AbsEntryCa><listeAbsCa>Liste des absences</listeAbsCa><modifyAbsCa>Modifier les absence</modifyAbsCa></fr>
-<en><emploiCa>week schedule</emploiCa><AbsEntryCa>Absence Entry</AbsEntryCa><listeAbsCa>Absence List</listeAbsCa><modifyAbsCa>Modify Absence</modifyAbsCa></en>
-</prof>
-<super-user>
-<ar></ar>
-<fr></fr>
-<en></en>
-</super-user>
+<translations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="translations.xsd">
+    <prof>
+        <ar>
+            <emploiCa>استعمال الزمن</emploiCa>
+            <AbsEntryCa>تسجيل الغياب</AbsEntryCa>
+            <nomAbs>الاسم</nomAbs>
+            <absenceAbs>الغياب</absenceAbs>
+            <enregistrerAbs>حفظ</enregistrerAbs>
+            <listeAbsCa>لائحة الغياب</listeAbsCa>
+            <modifyAbsCa>تعديل الغياب</modifyAbsCa>
+            <title>إدارة الغياب</title>
+            <semaine>حدد الأسبوع</semaine>
+            <semestre1>الفصل الدراسي 1</semestre1>
+            <semestre2>الفصل الدراسي 2</semestre2>
+            <afficher>عرض</afficher>
+            <language>اللغة</language>
+            <Lundi>الاثنين</Lundi>
+            <Mardi>الثلاثاء</Mardi>
+            <Mercredi>الأربعاء</Mercredi>
+            <Jeudi>الخميس</Jeudi>
+            <Vendredi>الجمعة</Vendredi>
+            <Samedi>السبت</Samedi>
+            <Dimanche>الأحد</Dimanche>
+            <logout>تسجيل الخروج</logout>
+        </ar>
+        <fr>
+            <emploiCa>Emploi du temps</emploiCa>
+            <AbsEntryCa>Enregistrer les absence</AbsEntryCa>
+            <nomAbs>Nom</nomAbs>
+            <absenceAbs>Absence</absenceAbs>
+            <enregistrerAbs>Enregister</enregistrerAbs>
+            <listeAbsCa>Liste des absences</listeAbsCa>
+            <modifyAbsCa>Modifier les absence</modifyAbsCa>
+            <title>Gerer les absences</title>
+            <semaine>Selectionnez la semaine</semaine>
+            <semestre1>Semestre 1</semestre1>
+            <semestre2>Semestre 2</semestre2>
+            <afficher>Afficher</afficher>
+            <language>Langue</language>
+            <Lundi>Lundi</Lundi>
+            <Mardi>Mardi</Mardi>
+            <Mercredi>Mercredi</Mercredi>
+            <Jeudi>Jeudi</Jeudi>
+            <Vendredi>Vendredi</Vendredi>
+            <Samedi>Samedi</Samedi>
+            <Dimanche>Dimanche</Dimanche>
+            <logout>Se déconnecter</logout>
+        </fr>
+        <en>
+            <emploiCa>week schedule</emploiCa>
+            <AbsEntryCa>Absence Entry</AbsEntryCa>
+            <nomAbs>Name</nomAbs>
+            <absenceAbs>Absence</absenceAbs>
+            <enregistrerAbs>Save</enregistrerAbs>
+            <listeAbsCa>Absence List</listeAbsCa>
+            <modifyAbsCa>Modify Absence</modifyAbsCa>
+            <title>Manage absences</title>
+            <semaine>Select the week</semaine>
+            <semestre1>Semester 1</semestre1>
+            <semestre2>Semester 2</semestre2>
+            <afficher>Display</afficher>
+            <language>Language</language>
+            <Lundi>Monday</Lundi>
+            <Mardi>Tuesday</Mardi>
+            <Mercredi>wednesday</Mercredi>
+            <Jeudi>Thursday</Jeudi>
+            <Vendredi>Friday</Vendredi>
+            <Samedi>Saturday</Samedi>
+            <Dimanche>Sunday</Dimanche>
+            <logout>Sign Out</logout>
+        </en>
+    </prof>
+    <super-user>
+        <ar>
+            <titlenav>واجهة مستخدم ممتاز</titlenav>
+            <language>اللغة</language>
+            <logout>تسجيل الخروج</logout>
+            <ajouterUser>إضافة مستخدم</ajouterUser>
+            <listProf>قائمة الأساتذة</listProf>
+            <loginProf>الدخول</loginProf>
+            <nomProf>الاسم العائلي</nomProf>
+            <prenomProf>الاسم الشخصي</prenomProf>
+            <motDePasseProf>كلمه السر</motDePasseProf>
+            <actionsProf>الإجراءات</actionsProf>
+            <listCor>قائمة المنسقين</listCor>
+            <loginCor>الدخول</loginCor>
+            <nomCor>الاسم العائلي</nomCor>
+            <prenomCor>الاسم الشخصي</prenomCor>
+            <motDePasseCor>كلمه السر</motDePasseCor>
+            <actionsCor>الإجراءات</actionsCor>
+            <listChef>قائمة رؤساء الأقسام</listChef>
+            <loginChef>الدخول</loginChef>
+            <nomChef>الاسم العائلي</nomChef>
+            <prenomChef>الاسم الشخصي</prenomChef>
+            <motDePasseChef>كلمه السر</motDePasseChef>
+            <actionsChef>الإجراءات</actionsChef>
+            <listAg>قائمة وكلاء التعليم</listAg>
+            <loginAg>الدخول</loginAg>
+            <nomAg>الاسم العائلي</nomAg>
+            <prenomAg>الاسم الشخصي</prenomAg>
+            <motDePasseAg>كلمه السر</motDePasseAg>
+            <actionsAg>الإجراءات</actionsAg>
+            <ajouterMat>اضافة مادة</ajouterMat>
+            <listMat>قائمة المواد</listMat>
+            <matiereMat>المادة</matiereMat>
+            <moduleMat>الوحدة</moduleMat>
+            <filiereMat>الشعبة</filiereMat>
+            <actionsMat>الإجراءات</actionsMat>
+            <ajouterAcc>اضافة وصول</ajouterAcc>
+            <listAcc>قائمة الوصول</listAcc>
+            <matiereAcc>المادة</matiereAcc>
+            <utilisateurAcc>المستخدم</utilisateurAcc>
+            <actionsAcc>الإجراءات</actionsAcc>
+            <ajouterPer>إضافة تصريح</ajouterPer>
+            <listPer>قائمة التصاريح</listPer>
+            <permission>التصريح</permission>
+            <actionsPer>الإجراءات</actionsPer>
+            <ajouterPerRole>إضافة دور التصريح</ajouterPerRole>
+            <listPerRole>قائمة دور التصاريح</listPerRole>
+            <rolePer>الدور</rolePer>
+            <permissionRole>التصريح</permissionRole>
+            <actionsPerRole>الإجراءات</actionsPerRole>
+        </ar>
+        <fr>
+            <titlenav>interface super utilisateur</titlenav>
+            <language>Langue</language>
+            <logout>Se déconnecter</logout>
+            <ajouterUser>Ajouter Utilisateur</ajouterUser>
+            <listProf>Liste des professeurs</listProf>
+            <loginProf>Login</loginProf>
+            <nomProf>Nom</nomProf>
+            <prenomProf>Prenom</prenomProf>
+            <motDePasseProf>Mot de passe</motDePasseProf>
+            <actionsProf>Actions</actionsProf>
+            <listCor>Liste des coordonnateurs</listCor>
+            <loginCor>Login</loginCor>
+            <nomCor>Nom</nomCor>
+            <prenomCor>Prenom</prenomCor>
+            <motDePasseCor>Mot de passe</motDePasseCor>
+            <actionsCor>Actions</actionsCor>
+            <listChef>Liste des chefs de départements</listChef>
+            <loginChef>Login</loginChef>
+            <nomChef>Nom</nomChef>
+            <prenomChef>Prenom</prenomChef>
+            <motDePasseChef>Mot de passe</motDePasseChef>
+            <actionsChef>Actions</actionsChef>
+            <listAg>Liste des Agents de scolarité</listAg>
+            <loginAg>Login</loginAg>
+            <nomAg>Nom</nomAg>
+            <prenomAg>Prenom</prenomAg>
+            <motDePasseAg>Mot de passe</motDePasseAg>
+            <actionsAg>Actions</actionsAg>
+            <ajouterMat>Ajouter Matière</ajouterMat>
+            <listMat>Liste des matières </listMat>
+            <matiereMat>Matière</matiereMat>
+            <moduleMat>Module</moduleMat>
+            <filiereMat>Filière</filiereMat>
+            <actionsMat>Actions</actionsMat>
+            <ajouterAcc>Ajouter accès</ajouterAcc>
+            <listAcc>Liste des accès</listAcc>
+            <matiereAcc>matière</matiereAcc>
+            <utilisateurAcc>Utilisateur</utilisateurAcc>
+            <actionsAcc>Actions</actionsAcc>
+            <ajouterPer>Ajouter permission</ajouterPer>
+            <listPer>Liste des permissions</listPer>
+            <permission>Permission</permission>
+            <actionsPer>Actions</actionsPer>
+            <ajouterPerRole>Ajouter le role de permission</ajouterPerRole>
+            <listPerRole>Liste des roles des permissions  </listPerRole>
+            <rolePer>Rôle</rolePer>
+            <permissionRole>Permission</permissionRole>
+            <actionsPerRole>Actions</actionsPerRole>
+        </fr>
+        <en>
+            <titlenav>Super User Interface</titlenav>   
+            <language>Language</language>
+            <logout>Sign Out</logout>
+            <ajouterUser>Add user</ajouterUser>
+            <listProf>List of professors</listProf>
+            <loginProf>Login</loginProf>
+            <nomProf>Last Name</nomProf>
+            <prenomProf>First Name</prenomProf>
+            <motDePasseProf>Password</motDePasseProf>
+            <actionsProf>Actions</actionsProf>
+            <listCor>List of coordinators</listCor>
+            <loginCor>Login</loginCor>
+            <nomCor>Last Name</nomCor>
+            <prenomCor>First Name</prenomCor>
+            <motDePasseCor>Password</motDePasseCor>
+            <actionsCor>Actions</actionsCor>
+            <listChef>List of department heads</listChef>
+            <loginChef>Login</loginChef>
+            <nomChef>Last Name</nomChef>
+            <prenomChef>First Name</prenomChef>
+            <motDePasseChef>Password</motDePasseChef>
+            <actionsChef>Actions</actionsChef>
+            <listAg>List of tuition agents</listAg>
+            <loginAg>Login</loginAg>
+            <nomAg>Last Name</nomAg>
+            <prenomAg>First Name</prenomAg>
+            <motDePasseAg>Password</motDePasseAg>
+            <actionsAg>Actions</actionsAg>
+            <ajouterMat>Add Material</ajouterMat>
+            <listMat>List of materials </listMat>
+            <matiereMat>Material</matiereMat>
+            <moduleMat>Module</moduleMat>
+            <filiereMat>Branch</filiereMat>
+            <actionsMat>Actions</actionsMat>
+            <ajouterAcc>Add access</ajouterAcc>
+            <listAcc>List of access</listAcc>
+            <matiereAcc>Material</matiereAcc>
+            <utilisateurAcc>User</utilisateurAcc>
+            <actionsAcc>Actions</actionsAcc>
+            <ajouterPer>Add permission</ajouterPer>
+            <listPer>List of permissions</listPer>
+            <permission>Permission</permission>
+            <actionsPer>Actions</actionsPer>
+            <ajouterPerRole>Add the role of permission</ajouterPerRole>
+            <listPerRole>Liste of permissions roles  </listPerRole>
+            <rolePer>Role</rolePer>
+            <permissionRole>Permission</permissionRole>
+            <actionsPerRole>Actions</actionsPerRole>
+        </en>
+    </super-user>
 </translations>

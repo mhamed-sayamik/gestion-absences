@@ -1,0 +1,269 @@
+<?xml version="1.0" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ESTS" >
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="Roles" type="RolesType"></xs:element>
+                <xs:element name="Users" type="UsersType"></xs:element>
+                <xs:element name="Permissions" type="PermissionsType"></xs:element>
+                <xs:element name="Groupes" type="GroupesType"></xs:element>
+                <xs:element name="Departements" type="DepartementsType"></xs:element>
+                <xs:element name="Filieres" type="FilieresType"></xs:element>
+                <xs:element name="Niveaux" type="NiveauxType"></xs:element>
+                <xs:element name="Etudiants" type="EtudiantsType"></xs:element>
+                <xs:element name="Seances" type="SeancesType"></xs:element>
+                <xs:element name="Matieres" type="MatieresType"></xs:element>
+                <xs:element name="Semestres" type="SemestresType"></xs:element>
+                <xs:element name="Modules" type="ModulesType"></xs:element>
+                <xs:element name="roles_permissions" type="roles_permissionsType"></xs:element>
+                <xs:element name="filieres_niveaux" type="filieres_niveauxType"></xs:element>
+                <xs:element name="access" type="accessType"></xs:element>
+                <xs:element name="abscences" type="abscencesType"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- //////////////////7 ELEMENT NOM GLOBAL ///////////////// -->
+    <xs:element name="nomType" type="xs:string"></xs:element>
+
+    <!-- ////////////////////// ELEMENT Roles /////////////// -->
+    <xs:complexType name="RolesType">
+        <xs:sequence>
+            <xs:element name="role" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Roles /////////////// -->
+
+    <xs:complexType name="UsersType">
+        <xs:sequence>
+            <xs:element name="user" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="login" type="xs:ID"></xs:element>
+                        <xs:element name="password" type="xs:string"></xs:element>
+                        <xs:element name="Nom" type="xs:string"></xs:element>
+                        <xs:element name="Prenom" type="xs:string"></xs:element>
+                        <xs:element name="id_Roles" type="xs:IDREF"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Permissions /////////////// -->
+    <xs:complexType name="PermissionsType">
+        <xs:sequence>
+            <xs:element name="permission" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nom" type="xs:string"></xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Groupes /////////////// -->
+    <xs:complexType name="GroupesType">
+        <xs:sequence>
+            <xs:element name="groupe" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                    <xs:attribute name="numero" type="xs:integer"></xs:attribute>
+                    <xs:attribute name="id_Filieres" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Departements /////////////// -->
+    <xs:complexType name="DepartementsType">
+        <xs:sequence>
+            <xs:element name="departement" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Filieres /////////////// -->
+    <xs:complexType name="FilieresType">
+        <xs:sequence>
+            <xs:element name="filiere" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nom" type="xs:string"></xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                    <xs:attribute name="id_Departements" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Niveaux /////////////// -->
+    <xs:complexType name="NiveauxType">
+        <xs:sequence>
+            <xs:element name="niveau" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Etudiants /////////////// -->
+    <xs:complexType name="EtudiantsType">
+        <xs:sequence>
+            <xs:element name="etudiant" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nom" type="xs:string"></xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                    <xs:attribute name="id_Groupes" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Seances /////////////// -->
+    <xs:complexType name="SeancesType">
+        <xs:sequence>
+            <xs:element name="seance" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="duree" type="xs:integer"></xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                    <xs:attribute name="numero" type="xs:integer"></xs:attribute>
+                    <xs:attribute name="jour" type="xs:integer"></xs:attribute>
+                    <xs:attribute name="semaine" type="xs:integer"></xs:attribute>
+                    <xs:attribute name="semestre" type="xs:integer"></xs:attribute>
+                    <xs:attribute name="id_Matieres" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="id_Groupes" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="enregistre">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="oui"/>
+                                <xs:enumeration value="non"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Matieres /////////////// -->
+    <xs:complexType name="MatieresType">
+        <xs:sequence>
+            <xs:element name="matiere" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nom" type="xs:string"></xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                    <xs:attribute name="id_module" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="id_Filieres" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Groupes /////////////// -->
+    <xs:complexType name="SemestresType">
+        <xs:sequence>
+            <xs:element name="semestre" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT Modules /////////////// -->
+    <xs:complexType name="ModulesType">
+        <xs:sequence>
+            <xs:element name="module" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="id" type="xs:ID"></xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT roles_permissions /////////////// -->
+    <xs:complexType name="roles_permissionsType">
+        <xs:sequence>
+            <xs:element name="role_permission" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="id_Permissions" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="id_Roles" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT filieres_niveaux /////////////// -->
+    <xs:complexType name="filieres_niveauxType">
+        <xs:sequence>
+            <xs:element name="filiere_niveau" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="id_Filieres" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="id_Niveaux" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT access /////////////// -->
+    <xs:complexType name="accessType">
+        <xs:sequence>
+            <xs:element name="user_matiere" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="login_user" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="id_Matieres" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ////////////////////// ELEMENT abscences /////////////// -->
+    <xs:complexType name="abscencesType">
+        <xs:sequence>
+            <xs:element name="abscence" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="id_Etudiants" type="xs:IDREF"></xs:attribute>
+                    <xs:attribute name="id_Seances" type="xs:IDREF"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+</xs:schema>
